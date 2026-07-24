@@ -1,0 +1,315 @@
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --light-grey: #f2f2f2;
+  --grey-hover: #8a8a8a;
+  --font: var(--font-instrument), "Instrument Sans", Helvetica, Arial, sans-serif;
+  /* Premium addition: A custom timing curve for all transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html, body {
+  height: 100%;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  /* ADDED: Global entrance animation */
+  animation: pageFadeIn 1.2s var(--ease-out-expo);
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.nav-word, .footer-word {
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out-expo);
+  text-decoration: none;
+  color: var(--black);
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 11px;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  padding: 0;
+  letter-spacing: 0.08em;
+}
+
+.nav-word:hover, .footer-word:hover {
+  color: var(--grey-hover);
+  letter-spacing: 0.11em;
+}
+
+/* --- STANDARD BUTTON SYSTEM ---
+   Sharp corners, dark black transparent fill, white all-caps text.
+   On hover: sheer black -> sheer grey. Use `.btn-major` everywhere
+   a primary action button is needed (Shop Now, Continue Shopping,
+   Add to Cart, Reserve, Submit, etc.) */
+.btn-major {
+  display: inline-block;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.85);
+  color: var(--white);
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: none;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: background 0.4s var(--ease-out-expo);
+  text-align: center;
+}
+
+.btn-major:hover {
+  background: rgba(90, 90, 90, 0.75); /* sheer black -> sheer grey */
+}
+
+.btn-major:disabled {
+  background: rgba(0, 0, 0, 0.25);
+  color: rgba(255, 255, 255, 0.6);
+  cursor: not-allowed;
+}
+
+.btn-major-outline {
+  display: inline-block;
+  border-radius: 0;
+  background: transparent;
+  color: var(--black);
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: 1px solid var(--black);
+  padding: 13px 27px;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out-expo);
+  text-align: center;
+}
+
+.btn-major-outline:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* --- HEADER DROPDOWNS (Shop / Sell) — full-width mega menu --- */
+.header-dropdown {
+  position: fixed;
+  top: 76px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: var(--white);
+  border: none;
+  box-shadow: none;
+  min-width: unset;
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: dropdownFade 0.3s var(--ease-out-expo);
+  z-index: 50;
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.header-dropdown-item {
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--black);
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color 0.3s var(--ease-out-expo), letter-spacing 0.3s var(--ease-out-expo);
+  width: fit-content;
+}
+
+.header-dropdown-item:hover {
+  background: none;
+  color: var(--grey-hover);
+  letter-spacing: 0.11em;
+}
+
+/* --- THE PREMIUM GLASS OVERLAY --- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  /* CHANGED: From solid grey to transparent white with blur */
+  background: rgba(255, 255, 255, 0.7); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: overlayFade 0.5s var(--ease-out-expo);
+}
+
+@keyframes overlayFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.popup {
+  background: #fff;
+  padding: 48px 52px;
+  width: 420px;
+  max-width: 92vw;
+  position: relative;
+  /* ADDED: Subtle border for definition on white-on-white layouts */
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+  animation: slideUp 0.6s var(--ease-out-expo);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.popup-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #000;
+  font-family: var(--font);
+  font-weight: 300;
+  transition: opacity 0.3s var(--ease-out-expo);
+}
+
+.popup-close:hover { opacity: 0.4; }
+
+.popup h2 {
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.popup label {
+  display: block;
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+  margin-top: 18px;
+}
+
+.popup label:first-of-type { margin-top: 0; }
+
+.popup input,
+.popup textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 11px;
+  padding: 6px 0;
+  background: transparent;
+  color: #000;
+  transition: border-color 0.4s var(--ease-out-expo);
+  border-radius: 0; /* Ensures mobile doesn't round the edges */
+}
+
+.popup input:focus,
+.popup textarea:focus {
+  border-bottom-color: var(--grey-hover);
+}
+
+.popup textarea {
+  resize: none;
+  height: 72px;
+}
+
+.field-error {
+  font-size: 10px;
+  color: #c00;
+  margin-top: 3px;
+  letter-spacing: 0.03em;
+}
+
+.popup-submit {
+  margin-top: 32px;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  border: none;
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 0;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.popup-submit:hover { 
+  background: #333; /* Darker grey than your previous hover for more "weight" */
+}
+
+.popup-submit:disabled { 
+  background: #f0f0f0; 
+  color: #aaa;
+  cursor: not-allowed; 
+}
+
+.success-msg {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 24px 0;
+  color: #000;
+}
+
+/* ADDED: Clean selection color (matches the Major aesthetic) */
+::selection {
+  background: #000;
+  color: #fff;
+}
+/* The Global Page Transition */
+.page-fade-in {
+  animation: pageSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0; /* Starts invisible */
+}
+
+@keyframes pageSlideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(15px); /* Slides up from 15px down */
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
