@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CheckoutPaymentForm from "@/components/CheckoutPaymentForm";
 import useAuth from "@/lib/AuthContext";
 import useCart from "@/lib/CartContext";
 import useOrders from "@/lib/useOrders";
@@ -15,22 +15,14 @@ export default function CheckoutPage() {
   const { isLoggedIn, isVerified, ready } = useAuth();
   const { items, subtotal, clearCart } = useCart();
   const { placeOrder } = useOrders();
-  const [placing, setPlacing] = useState(false);
 
   const shipping = items.length > 0 ? FLAT_SHIPPING : 0;
   const total = subtotal + shipping;
 
-  function handlePlaceOrder() {
-    setPlacing(true);
-    // PLACEHOLDER — this is where the real Stripe Connect Payment Element
-    // confirms payment before an order is created. See spec doc's
-    // "Implementation appendix" for the Payment Intent / destination
-    // charge code that belongs here.
-    setTimeout(() => {
-      const order = placeOrder({ items, subtotal, shipping, total });
-      clearCart();
-      router.push(`/checkout/confirmation?order=${order.id}`);
-    }, 600);
+  function handlePaymentSuccess() {
+    const order = placeOrder({ items, subtotal, shipping, total });
+    clearCart();
+    router.push(`/checkout/confirmation?order=${order.id}`);
   }
 
   if (!ready) return null;
@@ -102,22 +94,13 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <div
-              style={{
-                border: "1px dashed rgba(0,0,0,0.2)",
-                padding: 20,
-                marginBottom: 28,
-                fontSize: 11,
-                color: "var(--grey-hover)",
-                textAlign: "center",
-              }}
-            >
-              Stripe payment element goes here once Stripe Connect is wired in.
-            </div>
-
-            <button className="btn-major" style={{ width: "100%" }} onClick={handlePlaceOrder} disabled={placing || !isLoggedIn || !isVerified}>
-              {placing ? "Placing Order..." : "Place Order"}
-            </button>
+            {isLoggedIn && isVerified ? (
+              <CheckoutPaymentForm amount={total} onSuccess={handlePaymentSuccess} />
+            ) : (
+              <p style={{ fontSize: 11, color: "var(--grey-hover)", textAlign: "center", marginBottom: 28 }}>
+                Log in and verify your email to enable payment.
+              </p>
+            )}
           </>
         )}
       </main>
