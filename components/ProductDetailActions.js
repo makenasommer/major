@@ -58,8 +58,8 @@ export default function ProductDetailActions({ listing }) {
     const params = new URLSearchParams({
       listing: listing.id,
       listingName: listing.name,
-      seller: listing.seller.id,
-      sellerName: listing.seller.name,
+      seller: listing.sellerId,
+      sellerName: listing.sellerName,
     });
     router.push(`/messages/new?${params.toString()}`);
   }
@@ -68,7 +68,7 @@ export default function ProductDetailActions({ listing }) {
     e.preventDefault();
     const cents = Math.round(parseFloat(offerAmount) * 100);
     if (!cents || cents <= 0) return;
-    submitOffer({ listingId: listing.id, listingName: listing.name, sellerId: listing.seller.id, amount: cents });
+    submitOffer({ listingId: listing.id, listingName: listing.name, sellerId: listing.sellerId, amount: cents });
     setOfferSent(true);
     setOfferAmount("");
     setTimeout(() => {

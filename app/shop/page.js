@@ -3,54 +3,22 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ShopListings from "@/components/ShopListings";
 import ShopControls from "@/components/ShopControls";
-import { MOCK_LISTINGS } from "@/lib/mockListings";
+import { getListings } from "@/lib/listings";
 
 export const metadata = {
   title: "Shop — Major",
 };
 
-function filterAndSortListings(searchParams) {
-  let results = [...MOCK_LISTINGS];
-
-  const { category, type, condition, sale, q, sort } = searchParams;
-
-  if (category) results = results.filter((l) => l.category === category);
-  if (type) results = results.filter((l) => l.type === type);
-  if (condition) results = results.filter((l) => l.condition === condition);
-  if (sale === "true") results = results.filter((l) => l.sale);
-
-  if (q) {
-    const query = q.toLowerCase();
-    results = results.filter(
-      (l) =>
-        l.name.toLowerCase().includes(query) ||
-        l.description.toLowerCase().includes(query) ||
-        l.category.toLowerCase().includes(query)
-    );
-  }
-
-  switch (sort) {
-    case "newest":
-      results.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      break;
-    case "price-low":
-      results.sort((a, b) => a.price - b.price);
-      break;
-    case "price-high":
-      results.sort((a, b) => b.price - a.price);
-      break;
-    default:
-      // "relevance" — with real data this would weigh text match + recency + engagement.
-      // For mock data, newest-first is a reasonable stand-in.
-      results.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-  }
-
-  return results;
-}
-
 export default async function ShopPage({ searchParams }) {
   const params = await searchParams;
-  const listings = filterAndSortListings(params);
+  const listings = await getListings({
+    category: params.category,
+    type: params.type,
+    condition: params.condition,
+    sale: params.sale === "true",
+    q: params.q,
+    sort: params.sort,
+  });
 
   return (
     <div className="page-fade-in">

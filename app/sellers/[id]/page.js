@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
+import SellerReviews from "@/components/SellerReviews";
 import { getSellerById, getReviewsForSeller } from "@/lib/mockSellers";
-import { MOCK_LISTINGS } from "@/lib/mockListings";
+import { getListingsBySeller } from "@/lib/listings";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
@@ -16,7 +18,7 @@ export default async function SellerProfilePage({ params }) {
   if (!seller) notFound();
 
   const reviews = getReviewsForSeller(id);
-  const listings = MOCK_LISTINGS.filter((l) => l.seller.id === id);
+  const listings = await getListingsBySeller(id);
 
   return (
     <div className="page-fade-in">
@@ -49,24 +51,10 @@ export default async function SellerProfilePage({ params }) {
           )}
         </section>
 
-        <section>
-          <h2 style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--grey-hover)", marginBottom: 16 }}>
-            Reviews
-          </h2>
-          {reviews.length === 0 ? (
-            <p style={{ fontSize: 12, color: "var(--grey-hover)" }}>No reviews yet.</p>
-          ) : (
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-              {reviews.map((review) => (
-                <div key={review.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.08)", paddingBottom: 12 }}>
-                  <p style={{ fontSize: 11 }}>★ {review.rating} &middot; {review.reviewer}</p>
-                  <p style={{ fontSize: 12, color: "var(--grey-hover)", marginTop: 4 }}>{review.text}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
+        <SellerReviews sellerId={id} seedReviews={reviews} />
       </main>
+
+      <Footer />
     </div>
   );
 }

@@ -4,19 +4,24 @@ import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductDetailActions from "@/components/ProductDetailActions";
-import { getListingById } from "@/lib/mockListings";
+import { getListingById } from "@/lib/listings";
+import { getSellerById } from "@/lib/mockSellers";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const listing = getListingById(id);
+  const listing = await getListingById(id);
   return { title: listing ? `${listing.name} — Major` : "Listing — Major" };
 }
 
 export default async function ProductDetailPage({ params }) {
   const { id } = await params;
-  const listing = getListingById(id);
+  const listing = await getListingById(id);
 
   if (!listing) notFound();
+
+  // Trust-signal fields (rating, sales count) still come from the mock trust
+  // table for now, since real order/review aggregation doesn't exist yet.
+  const sellerTrust = getSellerById(listing.sellerId);
 
   return (
     <div className="page-fade-in">
@@ -49,9 +54,11 @@ export default async function ProductDetailPage({ params }) {
             {listing.description}
           </p>
 
-          <div style={{ fontSize: 11, color: "var(--grey-hover)" }}>
-            Condition: {listing.condition.replace("-", " ")}
-          </div>
+          {listing.condition && (
+            <div style={{ fontSize: 11, color: "var(--grey-hover)" }}>
+              Condition: {listing.condition.replace("-", " ")}
+            </div>
+          )}
 
           <ProductDetailActions listing={listing} />
 
@@ -60,13 +67,15 @@ export default async function ProductDetailPage({ params }) {
               Sold By
             </p>
             <p style={{ fontSize: 12 }}>
-              <Link href={`/sellers/${listing.seller.id}`} style={{ color: "var(--black)", textDecoration: "underline" }}>
-                {listing.seller.name}
+              <Link href={`/sellers/${listing.sellerId}`} style={{ color: "var(--black)", textDecoration: "underline" }}>
+                {listing.sellerName}
               </Link>
             </p>
-            <p style={{ fontSize: 11, color: "var(--grey-hover)" }}>
-              ★ {listing.seller.rating} · {listing.seller.salesCount} sales
-            </p>
+            {sellerTrust && (
+              <p style={{ fontSize: 11, color: "var(--grey-hover)" }}>
+                ★ {sellerTrust.rating} · {sellerTrust.salesCount} sales
+              </p>
+            )}
           </div>
         </div>
       </main>
