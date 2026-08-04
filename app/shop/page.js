@@ -3,10 +3,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ShopListings from "@/components/ShopListings";
 import ShopControls from "@/components/ShopControls";
+import OfferPopup from "@/components/OfferPopup";
 import { getListings } from "@/lib/listings";
 
 export const metadata = {
-  title: "Shop — Major",
+  title: "Shop: Major",
 };
 
 export default async function ShopPage({ searchParams }) {
@@ -23,6 +24,7 @@ export default async function ShopPage({ searchParams }) {
   return (
     <div className="page-fade-in">
       <Header />
+      <OfferPopup />
 
       <main style={{ padding: "20px 36px 60px", display: "flex", gap: 40 }}>
         <Suspense fallback={<div style={{ width: 180, flexShrink: 0 }} />}>

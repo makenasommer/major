@@ -44,7 +44,7 @@ export default function ContactPopup({ onClose }) {
       );
       setStatus("done");
     } catch {
-      alert("Something went wrong — please try again.");
+      alert("Something went wrong: please try again.");
       setStatus("idle");
     }
   };
@@ -60,7 +60,7 @@ export default function ContactPopup({ onClose }) {
         <button className="popup-close" onClick={onClose}>×</button>
 
         {status === "done" ? (
-          <p className="success-msg">message sent — we&apos;ll get back to you shortly.</p>
+          <p className="success-msg">message sent: we&apos;ll get back to you shortly.</p>
         ) : (
           <>
             <h2>Contact</h2>

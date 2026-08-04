@@ -26,7 +26,7 @@ export default function SellerOnboarding() {
         throw new Error(data.error || "Failed to start payout setup.");
       }
 
-      // First time creating this seller's account — save the id so we reuse it next time.
+      // First time creating this seller's account: save the id so we reuse it next time.
       if (!accountIdRef.current && data.accountId) {
         accountIdRef.current = data.accountId;
         saveStripeAccountId(data.accountId);
@@ -54,7 +54,7 @@ export default function SellerOnboarding() {
   return (
     <div>
       {onboardingComplete ? (
-        <p style={{ fontSize: 12 }}>Payout setup complete — you&rsquo;re ready to receive payments.</p>
+        <p style={{ fontSize: 12 }}>Payout setup complete: you&rsquo;re ready to receive payments.</p>
       ) : (
         <ConnectComponentsProvider connectInstance={connectInstance}>
           <ConnectAccountOnboarding onExit={() => setOnboardingComplete(true)} />

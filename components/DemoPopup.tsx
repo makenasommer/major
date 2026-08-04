@@ -53,7 +53,7 @@ export default function DemoPopup({ onClose }: Props) {
       );
       setStatus("done");
     } catch {
-      alert("Something went wrong — please try again.");
+      alert("Something went wrong: please try again.");
       setStatus("idle");
     }
   };
@@ -70,7 +70,7 @@ export default function DemoPopup({ onClose }: Props) {
 
         {status === "done" ? (
           <p className="success-msg">
-            request received — we&apos;ll be in touch soon.
+            request received: we&apos;ll be in touch soon.
           </p>
         ) : (
           <>

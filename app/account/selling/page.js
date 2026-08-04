@@ -77,7 +77,7 @@ export default function SellerDashboardPage() {
         </section>
 
         <p style={{ fontSize: 11, color: "var(--grey-hover)" }}>
-          Payout figures are placeholders — real numbers populate once Stripe Connect is wired to this dashboard (see spec doc, Payments section).
+          Payout figures are placeholders: real numbers populate once Stripe Connect is wired to this dashboard (see spec doc, Payments section).
         </p>
 
         <section>

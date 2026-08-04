@@ -10,7 +10,7 @@ import { getSellerById } from "@/lib/mockSellers";
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const listing = await getListingById(id);
-  return { title: listing ? `${listing.name} — Major` : "Listing — Major" };
+  return { title: listing ? `${listing.name}: Major` : "Listing: Major" };
 }
 
 export default async function ProductDetailPage({ params }) {
@@ -66,13 +66,18 @@ export default async function ProductDetailPage({ params }) {
             <p style={{ fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--grey-hover)", marginBottom: 8 }}>
               Sold By
             </p>
-            <p style={{ fontSize: 12 }}>
-              <Link href={`/sellers/${listing.sellerId}`} style={{ color: "var(--black)", textDecoration: "underline" }}>
-                {listing.sellerName}
-              </Link>
-            </p>
+            <Link href={`/sellers/${listing.sellerId}`} style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", color: "var(--black)" }}>
+              <div style={{ position: "relative", width: 28, height: 28, borderRadius: "50%", overflow: "hidden", background: "var(--light-grey)", flexShrink: 0 }}>
+                {listing.sellerPhotoURL && (
+                  <Image src={listing.sellerPhotoURL} alt={listing.sellerUsername || listing.sellerName} fill style={{ objectFit: "cover" }} />
+                )}
+              </div>
+              <span style={{ fontSize: 12, textDecoration: "underline" }}>
+                {listing.sellerUsername || listing.sellerName}
+              </span>
+            </Link>
             {sellerTrust && (
-              <p style={{ fontSize: 11, color: "var(--grey-hover)" }}>
+              <p style={{ fontSize: 11, color: "var(--grey-hover)", marginTop: 6 }}>
                 ★ {sellerTrust.rating} · {sellerTrust.salesCount} sales
               </p>
             )}

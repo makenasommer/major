@@ -1,22 +1,33 @@
 import { notFound } from "next/navigation";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import SellerReviews from "@/components/SellerReviews";
+import SellerAvatar from "@/components/SellerAvatar";
 import { getSellerById, getReviewsForSeller } from "@/lib/mockSellers";
 import { getListingsBySeller } from "@/lib/listings";
 
+async function getRealSeller(id) {
+  const snap = await getDoc(doc(db, "users", id));
+  return snap.exists() ? snap.data() : null;
+}
+
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const seller = getSellerById(id);
-  return { title: seller ? `${seller.name} — Major` : "Seller — Major" };
+  const seller = await getRealSeller(id);
+  return { title: seller ? `${seller.username || seller.name}: Major` : "Seller: Major" };
 }
 
 export default async function SellerProfilePage({ params }) {
   const { id } = await params;
-  const seller = getSellerById(id);
+  const seller = await getRealSeller(id);
   if (!seller) notFound();
 
+  // Trust stats (rating, sales count, joined date) still come from the mock
+  // trust table for now, since real order/review aggregation doesn't exist yet.
+  const trust = getSellerById(id);
   const reviews = getReviewsForSeller(id);
   const listings = await getListingsBySeller(id);
 
@@ -25,15 +36,21 @@ export default async function SellerProfilePage({ params }) {
       <Header />
 
       <main style={{ maxWidth: 800, margin: "50px auto", padding: "0 24px", display: "flex", flexDirection: "column", gap: 36 }}>
-        <div>
-          <h1 style={{ fontSize: 18, textTransform: "uppercase", letterSpacing: "0.04em" }}>{seller.name}</h1>
-          <p style={{ fontSize: 11, color: "var(--grey-hover)", marginTop: 6 }}>
-            {seller.campus} &middot; Joined {seller.joined}
-          </p>
-          <p style={{ fontSize: 11, marginTop: 6 }}>
-            ★ {seller.rating} &middot; {seller.salesCount} sales
-          </p>
-          <p style={{ fontSize: 11, color: "var(--grey-hover)", marginTop: 4 }}>{seller.responseRate}</p>
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <SellerAvatar photoURL={seller.photoURL} name={seller.username || seller.name} size={56} />
+          <div>
+            <h1 style={{ fontSize: 18, textTransform: "uppercase", letterSpacing: "0.04em" }}>
+              {seller.username || seller.name}
+            </h1>
+            <p style={{ fontSize: 11, color: "var(--grey-hover)", marginTop: 6 }}>
+              {seller.campus}{trust && ` · Joined ${trust.joined}`}
+            </p>
+            {trust && (
+              <p style={{ fontSize: 11, marginTop: 6 }}>
+                ★ {trust.rating} &middot; {trust.salesCount} sales
+              </p>
+            )}
+          </div>
         </div>
 
         <section>

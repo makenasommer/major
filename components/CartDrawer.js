@@ -72,7 +72,7 @@ export default function CartDrawer({ open, onClose }) {
                   <span style={{ fontSize: 11 }}>{item.name}</span>
                   {item.type === "rent" && item.rentalDates && (
                     <span style={{ fontSize: 10, color: "var(--grey-hover)" }}>
-                      Rent {item.rentalDates.start} – {item.rentalDates.end}
+                      Rent {item.rentalDates.start} to {item.rentalDates.end}
                     </span>
                   )}
                   <span style={{ fontSize: 11, marginTop: 2 }}>${(item.price / 100).toFixed(2)}</span>

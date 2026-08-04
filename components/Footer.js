@@ -2,6 +2,46 @@
 import { useState } from "react";
 import Link from "next/link";
 
+function DownloadAppMenu() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div style={{ position: "relative" }}>
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="footer-word"
+        style={{ background: "none", border: "none", cursor: "pointer" }}
+      >
+        Download the App
+      </button>
+      {open && (
+        <div
+          style={{
+            position: "absolute",
+            bottom: "100%",
+            left: 0,
+            marginBottom: 8,
+            background: "var(--white)",
+            border: "1px solid rgba(0,0,0,0.1)",
+            display: "flex",
+            flexDirection: "column",
+            minWidth: 160,
+            zIndex: 10,
+          }}
+        >
+          {/* PLACEHOLDER links - replace with your real App Store / Google Play listing URLs once live */}
+          <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" className="footer-word" style={{ padding: "10px 14px" }}>
+            App Store
+          </a>
+          <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" className="footer-word" style={{ padding: "10px 14px" }}>
+            Google Play
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
@@ -9,7 +49,7 @@ export default function Footer() {
   function handleSubscribe(e) {
     e.preventDefault();
     if (!email.trim()) return;
-    // PLACEHOLDER — wire this to your actual email list provider
+    // PLACEHOLDER: wire this to your actual email list provider
     setSubscribed(true);
     setEmail("");
   }
@@ -52,23 +92,17 @@ export default function Footer() {
                   color: "var(--black)",
                 }}
               />
-              <button type="submit" aria-label="Subscribe" style={{ background: "none", border: "none", cursor: "pointer", fontSize: 13 }}>
-                →
+              <button type="submit" aria-label="Subscribe" style={{ background: "none", border: "none", cursor: "pointer", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                Submit
               </button>
             </form>
           )}
         </div>
 
-        {/* Column 2: Terms & Conditions */}
+        {/* Column 2: legal links, no header label */}
         <div style={{ flex: "1 1 160px" }}>
-          <p style={{ fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>
-            Terms &amp; Conditions
-          </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <Link href="/terms" className="footer-word">Terms of Service</Link>
-            <Link href="/privacy" className="footer-word">Privacy Policy</Link>
-            <Link href="/shipping" className="footer-word">Shipping</Link>
-            <Link href="/returns" className="footer-word">Returns</Link>
             <Link href="/faq" className="footer-word">FAQ</Link>
             <Link href="/privacy-choices" className="footer-word">Your Privacy Choices</Link>
           </div>
@@ -86,7 +120,13 @@ export default function Footer() {
             <Link href="/contact" className="footer-word">Contact Us</Link>
             <Link href="/demo" className="footer-word">Book a Demo</Link>
             <Link href="/press" className="footer-word">Press</Link>
+            <Link href="/partners" className="footer-word">Partners</Link>
           </div>
+        </div>
+
+        {/* Column 4: Download the App */}
+        <div style={{ flex: "1 1 160px", display: "flex", alignItems: "flex-start", justifyContent: "flex-end" }}>
+          <DownloadAppMenu />
         </div>
       </div>
 

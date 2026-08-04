@@ -39,6 +39,8 @@ export default function ProductDetailActions({ listing }) {
         image: listing.images[0],
         type: "rent",
         rentalDates: { start: rentalStart, end: rentalEnd },
+        sellerId: listing.sellerId,
+        depositAmount: listing.rentalOptions?.depositAmount || 0,
       });
     } else {
       addItem({
@@ -47,6 +49,7 @@ export default function ProductDetailActions({ listing }) {
         price: listing.price,
         image: listing.images[0],
         type: "buy",
+        sellerId: listing.sellerId,
       });
     }
     setAdded(true);
@@ -54,7 +57,7 @@ export default function ProductDetailActions({ listing }) {
   }
 
   function handleMessageSeller() {
-    // Conversations can only start from a listing — see spec doc.
+    // Conversations can only start from a listing: see spec doc.
     const params = new URLSearchParams({
       listing: listing.id,
       listingName: listing.name,
@@ -100,7 +103,7 @@ export default function ProductDetailActions({ listing }) {
           </div>
           {rentalTotal && (
             <p style={{ fontSize: 11 }}>
-              {rentalTotal.days} day{rentalTotal.days > 1 ? "s" : ""} — $
+              {rentalTotal.days} day{rentalTotal.days > 1 ? "s" : ""}: $
               {(rentalTotal.total / 100).toFixed(2)} total
               {listing.rentalOptions?.depositAmount && (
                 <span style={{ color: "var(--grey-hover)" }}>

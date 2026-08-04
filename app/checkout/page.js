@@ -8,18 +8,36 @@ import useAuth from "@/lib/AuthContext";
 import useCart from "@/lib/CartContext";
 import useOrders from "@/lib/useOrders";
 
-const FLAT_SHIPPING = 500; // $5.00 placeholder — replace with real shipping calc later
+const FLAT_SHIPPING = 500; // $5.00 placeholder: replace with real shipping calc later
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { isLoggedIn, isVerified, ready } = useAuth();
+  const { user, isLoggedIn, isVerified, ready } = useAuth();
   const { items, subtotal, clearCart } = useCart();
   const { placeOrder } = useOrders();
 
   const shipping = items.length > 0 ? FLAT_SHIPPING : 0;
   const total = subtotal + shipping;
 
-  function handlePaymentSuccess() {
+  const depositTotal = items.reduce((sum, item) => sum + (item.depositAmount || 0), 0);
+
+  async function handlePaymentSuccess({ paymentMethodId, customerId }) {
+    // Split payment out to each seller (minus platform fee).
+    fetch("/api/stripe/create-transfers", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items }),
+    }).catch((err) => console.error("Transfer creation failed:", err));
+
+    // Place a hold for any rental deposits, reusing the card just used.
+    if (depositTotal > 0 && paymentMethodId && customerId) {
+      fetch("/api/stripe/create-deposit-hold", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: depositTotal, customerId, paymentMethodId }),
+      }).catch((err) => console.error("Deposit hold failed:", err));
+    }
+
     const order = placeOrder({ items, subtotal, shipping, total });
     clearCart();
     router.push(`/checkout/confirmation?order=${order.id}`);
@@ -70,7 +88,7 @@ export default function CheckoutPage() {
                     <p style={{ fontSize: 12 }}>{item.name}</p>
                     {item.type === "rent" && item.rentalDates && (
                       <p style={{ fontSize: 10, color: "var(--grey-hover)" }}>
-                        Rent {item.rentalDates.start} – {item.rentalDates.end}
+                        Rent {item.rentalDates.start} to {item.rentalDates.end}
                       </p>
                     )}
                   </div>
@@ -88,6 +106,12 @@ export default function CheckoutPage() {
                 <span>Shipping</span>
                 <span>${(shipping / 100).toFixed(2)}</span>
               </div>
+              {depositTotal > 0 && (
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12 }}>
+                  <span>Refundable Deposit (held, not charged)</span>
+                  <span>${(depositTotal / 100).toFixed(2)}</span>
+                </div>
+              )}
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, fontWeight: 600, marginTop: 6 }}>
                 <span>Total</span>
                 <span>${(total / 100).toFixed(2)}</span>
@@ -95,7 +119,7 @@ export default function CheckoutPage() {
             </div>
 
             {isLoggedIn && isVerified ? (
-              <CheckoutPaymentForm amount={total} onSuccess={handlePaymentSuccess} />
+              <CheckoutPaymentForm amount={total} email={user?.email} onSuccess={handlePaymentSuccess} />
             ) : (
               <p style={{ fontSize: 11, color: "var(--grey-hover)", textAlign: "center", marginBottom: 28 }}>
                 Log in and verify your email to enable payment.

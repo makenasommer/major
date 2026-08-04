@@ -28,7 +28,7 @@ export default function MessagesInboxPage() {
 
         {isLoggedIn && threads.length === 0 && (
           <p style={{ fontSize: 12, color: "var(--grey-hover)" }}>
-            No conversations yet — message a seller from any listing to start one.
+            No conversations yet: message a seller from any listing to start one.
           </p>
         )}
 

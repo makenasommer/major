@@ -12,13 +12,10 @@ const instrumentSans = Instrument_Sans({
 
 export const metadata = {
   title: "major",
-  description: "major — campus marketplace",
-  icons: {
-    icon: "/major-logo.png",
-  },
+  description: "major: campus marketplace",
   openGraph: {
     title: "major",
-    description: "major — campus marketplace",
+    description: "major: campus marketplace",
     images: [
       {
         url: "/major-logo.png",

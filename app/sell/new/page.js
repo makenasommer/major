@@ -62,6 +62,8 @@ function NewListingForm() {
       const listingId = await createListing({
         sellerId: user.id,
         sellerName: user.name,
+        sellerUsername: user.username,
+        sellerPhotoURL: user.photoURL,
         sellerCampus: user.campus,
         name: name.trim(),
         description: description.trim(),
@@ -77,7 +79,7 @@ function NewListingForm() {
       router.push(`/shop/${listingId}`);
     } catch (err) {
       console.error("Create listing error:", err);
-      setError("Something went wrong creating your listing — please try again.");
+      setError("Something went wrong creating your listing: please try again.");
       setSubmitting(false);
     }
   }

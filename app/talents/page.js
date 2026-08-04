@@ -75,7 +75,7 @@ export default function Talents() {
 
       {/* FOOTER */}
       <footer style={{ display: 'flex', justifyContent: 'center', padding: '18px 24px' }}>
-        <Link href="/" style={navStyle}>← back</Link>
+        <Link href="/" style={navStyle}>Back</Link>
       </footer>
 
     </div>

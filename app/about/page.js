@@ -78,7 +78,7 @@ export default function About() {
 
       {/* FOOTER */}
       <footer style={{ display: 'flex', justifyContent: 'center', padding: '32px 24px' }}>
-        <Link href="/" style={navStyle}>← back</Link>
+        <Link href="/" style={navStyle}>Back</Link>
       </footer>
 
     </div>

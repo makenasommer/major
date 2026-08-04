@@ -49,7 +49,7 @@ export default function DemoPage() {
       );
       setStatus("done");
     } catch {
-      alert("Something went wrong — please try again.");
+      alert("Something went wrong: please try again.");
       setStatus("idle");
     }
   }
@@ -59,15 +59,12 @@ export default function DemoPage() {
       <Header />
 
       <main style={{ maxWidth: 460, margin: "60px auto", padding: "0 24px 80px" }}>
-        <h1 style={{ fontSize: 14, textTransform: "uppercase", letterSpacing: "0.08em", textAlign: "center", marginBottom: 8 }}>
+        <h1 style={{ fontSize: 14, textTransform: "uppercase", letterSpacing: "0.08em", textAlign: "center", marginBottom: 32 }}>
           Book a Demo
         </h1>
-        <p style={{ fontSize: 11, color: "var(--grey-hover)", textAlign: "center", marginBottom: 32 }}>
-          After submitting, we will be in touch shortly.
-        </p>
 
         {status === "done" ? (
-          <p style={{ fontSize: 12, textAlign: "center" }}>Thanks — we&rsquo;ll be in touch soon.</p>
+          <p style={{ fontSize: 12, textAlign: "center" }}>Thanks: we&rsquo;ll be in touch soon.</p>
         ) : (
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             <div>
@@ -83,7 +80,7 @@ export default function DemoPage() {
               {errors.university && <p style={errorStyle}>{errors.university}</p>}
             </div>
             <div>
-              <input placeholder="Email" value={fields.email} onChange={setField("email")} style={inputStyle} />
+              <input placeholder="EMAIL" value={fields.email} onChange={setField("email")} style={{ ...inputStyle, textTransform: "uppercase" }} />
               {errors.email && <p style={errorStyle}>{errors.email}</p>}
             </div>
 

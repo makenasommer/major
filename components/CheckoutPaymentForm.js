@@ -5,7 +5,7 @@ import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-function PaymentForm({ onSuccess }) {
+function PaymentForm({ onSuccess, customerId }) {
   const stripe = useStripe();
   const elements = useElements();
   const [submitting, setSubmitting] = useState(false);
@@ -33,9 +33,9 @@ function PaymentForm({ onSuccess }) {
     }
 
     if (paymentIntent && paymentIntent.status === "succeeded") {
-      onSuccess();
+      onSuccess({ paymentMethodId: paymentIntent.payment_method, customerId });
     } else {
-      setError("Payment did not complete — please try again.");
+      setError("Payment did not complete. Please try again.");
       setSubmitting(false);
     }
   }
@@ -56,18 +56,22 @@ function PaymentForm({ onSuccess }) {
   );
 }
 
-export default function CheckoutPaymentForm({ amount, onSuccess }) {
+export default function CheckoutPaymentForm({ amount, email, onSuccess }) {
   const [clientSecret, setClientSecret] = useState(null);
+  const [customerId, setCustomerId] = useState(null);
 
   useEffect(() => {
     fetch("/api/stripe/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount }),
+      body: JSON.stringify({ amount, email }),
     })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, [amount]);
+      .then((data) => {
+        setClientSecret(data.clientSecret);
+        setCustomerId(data.customerId);
+      });
+  }, [amount, email]);
 
   const options = useMemo(() => ({ clientSecret }), [clientSecret]);
 
@@ -77,7 +81,7 @@ export default function CheckoutPaymentForm({ amount, onSuccess }) {
 
   return (
     <Elements stripe={stripePromise} options={options}>
-      <PaymentForm onSuccess={onSuccess} />
+      <PaymentForm onSuccess={onSuccess} customerId={customerId} />
     </Elements>
   );
 }

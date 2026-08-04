@@ -75,23 +75,23 @@ export default function TermsPage() {
 
       <Section title="10. Prohibited & Restricted Items">
         <p style={{ marginBottom: 12 }}>
-          The following may not be listed or sold on Major. This list is illustrative, not exhaustive —
-          local, state, and federal laws may prohibit additional items.
+          The following may not be listed or sold on Major. This list is illustrative, not exhaustive.
+          Local, state, and federal laws may prohibit additional items.
         </p>
         <ul style={{ paddingLeft: 16, lineHeight: 2.2 }}>
           {[
-            "Illegal drugs & paraphernalia — controlled substances, non-prescription opioids, cannabis where illegal, and drug-related devices.",
-            "Alcohol & tobacco — alcoholic beverages, tobacco, vaping devices, and nicotine products.",
-            "Weapons & hazardous materials — firearms, ammunition, explosives, restricted weapons, hazardous chemicals, and radioactive materials.",
-            "Prescription & restricted medical items — prescription medications and regulated medical equipment.",
-            "Stolen, counterfeit & infringing goods — stolen property, unauthorized replicas, and IP-infringing items.",
-            "Protected wildlife — endangered animal products and regulated live animals or plants.",
-            "Sexual & exploitative content — any sexual content involving minors (zero tolerance, will be reported) and explicit content violating local law.",
-            "Illicit services & documents — fake IDs, fraud-enabling services, and unlawful gambling.",
-            "Other — anything illegal in the buyer's or seller's location, items requiring unlicensed professional credentials, and age-restricted items unrelated to academics.",
+            "Illegal drugs & paraphernalia: controlled substances, non-prescription opioids, cannabis where illegal, and drug-related devices.",
+            "Alcohol & tobacco: alcoholic beverages, tobacco, vaping devices, and nicotine products.",
+            "Weapons & hazardous materials: firearms, ammunition, explosives, restricted weapons, hazardous chemicals, and radioactive materials.",
+            "Prescription & restricted medical items: prescription medications and regulated medical equipment.",
+            "Stolen, counterfeit & infringing goods: stolen property, unauthorized replicas, and IP-infringing items.",
+            "Protected wildlife: endangered animal products and regulated live animals or plants.",
+            "Sexual & exploitative content: any sexual content involving minors (zero tolerance, will be reported) and explicit content violating local law.",
+            "Illicit services & documents: fake IDs, fraud-enabling services, and unlawful gambling.",
+            "Other: anything illegal in the buyer's or seller's location, items requiring unlicensed professional credentials, and age-restricted items unrelated to academics.",
           ].map((item, i) => (
             <li key={i} style={{ listStyle: "none", paddingLeft: 8, position: "relative" }}>
-              <span style={{ position: "absolute", left: -8 }}>—</span>
+              <span style={{ position: "absolute", left: -8 }}>&bull;</span>
               {item}
             </li>
           ))}
@@ -121,7 +121,7 @@ export default function TermsPage() {
       {/* Footer Back Button */}
       <footer style={{ marginTop: 80, textAlign: 'center' }}>
         <Link href="/" style={{ textDecoration: 'none', color: '#000', fontSize: 11, letterSpacing: '0.05em' }}>
-          ← BACK
+          BACK
         </Link>
       </footer>
     </main>

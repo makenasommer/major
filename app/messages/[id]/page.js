@@ -26,7 +26,7 @@ export default function ThreadPage() {
         <Header />
         <main style={{ maxWidth: 560, margin: "50px auto", padding: "0 24px" }}>
           <p style={{ fontSize: 12, color: "var(--grey-hover)" }}>Conversation not found.</p>
-          <Link href="/messages" className="footer-word">← Back to Messages</Link>
+          <Link href="/messages" className="footer-word">Back to Messages</Link>
         </main>
         <Footer />
       </div>
@@ -39,7 +39,7 @@ export default function ThreadPage() {
 
       <main style={{ maxWidth: 560, margin: "50px auto", padding: "0 24px" }}>
         <Link href="/messages" className="footer-word" style={{ display: "inline-block", marginBottom: 20 }}>
-          ← Back to Messages
+          Back to Messages
         </Link>
 
         <h1 style={{ fontSize: 15, textTransform: "uppercase", letterSpacing: "0.04em" }}>{thread.sellerName}</h1>
@@ -49,7 +49,7 @@ export default function ThreadPage() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 24, minHeight: 120 }}>
           {thread.messages.length === 0 ? (
-            <p style={{ fontSize: 11, color: "var(--grey-hover)" }}>No messages yet — say hello.</p>
+            <p style={{ fontSize: 11, color: "var(--grey-hover)" }}>No messages yet: say hello.</p>
           ) : (
             thread.messages.map((msg, i) => (
               <div

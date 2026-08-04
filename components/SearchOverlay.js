@@ -40,7 +40,7 @@ export default function SearchOverlay({ open, onClose }) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search Major"
+            placeholder="SEARCH"
             style={{
               width: "100%",
               border: "none",
@@ -54,21 +54,10 @@ export default function SearchOverlay({ open, onClose }) {
               background: "transparent",
               color: "var(--black)",
               textAlign: "center",
+              textTransform: "uppercase",
             }}
           />
         </form>
-        <p
-          style={{
-            textAlign: "center",
-            marginTop: 16,
-            fontSize: 10,
-            letterSpacing: "0.06em",
-            color: "var(--grey-hover)",
-            textTransform: "uppercase",
-          }}
-        >
-          Press Enter to search &middot; Esc to close
-        </p>
       </div>
     </div>
   );

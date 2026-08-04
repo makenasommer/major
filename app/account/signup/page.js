@@ -46,7 +46,7 @@ export default function SignupPage() {
 
         {status === "done" ? (
           <p style={{ fontSize: 12, textAlign: "center", color: "var(--grey-hover)" }}>
-            Account created — check <strong style={{ color: "var(--black)" }}>{email}</strong> for a
+            Account created: check <strong style={{ color: "var(--black)" }}>{email}</strong> for a
             verification link before logging in.
           </p>
         ) : (
@@ -99,6 +99,6 @@ export default function SignupPage() {
 function friendlyError(err) {
   const code = err?.code || "";
   if (code.includes("email-already-in-use")) return "An account with that email already exists.";
-  if (code.includes("weak-password")) return "Password is too weak — try a longer one.";
-  return err.message || "Something went wrong — please try again.";
+  if (code.includes("weak-password")) return "Password is too weak: try a longer one.";
+  return err.message || "Something went wrong: please try again.";
 }

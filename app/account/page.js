@@ -1,22 +1,35 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import useAuth from "@/lib/AuthContext";
 import useOrders from "@/lib/useOrders";
 
 export default function AccountPage() {
-  const { user, isLoggedIn, isVerified, ready, logout, resendVerificationEmail } = useAuth();
+  const { user, isLoggedIn, isVerified, ready, logout, resendVerificationEmail, updateProfile } = useAuth();
   const { orders } = useOrders();
   const [resent, setResent] = useState(false);
+  const [editingProfile, setEditingProfile] = useState(false);
+  const [username, setUsername] = useState("");
+  const [photoFile, setPhotoFile] = useState(null);
+  const [savingProfile, setSavingProfile] = useState(false);
 
   if (!ready) return null;
 
   async function handleResend() {
     await resendVerificationEmail();
     setResent(true);
-  } // avoid flashing logged-out state on first paint
+  }
+
+  async function handleSaveProfile() {
+    setSavingProfile(true);
+    await updateProfile({ username: username || user.username, photoFile });
+    setSavingProfile(false);
+    setEditingProfile(false);
+    setPhotoFile(null);
+  }
 
   return (
     <div className="page-fade-in">
@@ -33,7 +46,7 @@ export default function AccountPage() {
         ) : !isVerified ? (
           <div style={{ textAlign: "center" }}>
             <p style={{ fontSize: 12, marginBottom: 16 }}>
-              Please verify your email address before continuing — check {user?.email} for the link.
+              Please verify your email address before continuing: check {user?.email} for the link.
             </p>
             {resent ? (
               <p style={{ fontSize: 11, color: "var(--grey-hover)" }}>Verification email resent.</p>
@@ -48,15 +61,46 @@ export default function AccountPage() {
           </div>
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-              <div>
-                <h1 style={{ fontSize: 16, textTransform: "uppercase", letterSpacing: "0.04em" }}>
-                  {user.name}
-                </h1>
-                <p style={{ fontSize: 11, color: "var(--grey-hover)" }}>{user.campus}</p>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+              <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+                <div style={{ position: "relative", width: 56, height: 56, borderRadius: "50%", overflow: "hidden", background: "var(--light-grey)" }}>
+                  {user.photoURL && (
+                    <Image src={user.photoURL} alt={user.username || user.name} fill style={{ objectFit: "cover" }} />
+                  )}
+                </div>
+                <div>
+                  <h1 style={{ fontSize: 16, textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                    {user.username || user.name}
+                  </h1>
+                  <p style={{ fontSize: 11, color: "var(--grey-hover)" }}>{user.campus}</p>
+                </div>
               </div>
               <button className="footer-word" onClick={logout}>Log Out</button>
             </div>
+
+            <section>
+              {!editingProfile ? (
+                <button className="footer-word" onClick={() => { setEditingProfile(true); setUsername(user.username || ""); }}>
+                  Edit Profile Picture / Username
+                </button>
+              ) : (
+                <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 320 }}>
+                  <input
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    style={{ fontFamily: "var(--font)", fontSize: 12, border: "1px solid var(--black)", padding: 10 }}
+                  />
+                  <input type="file" accept="image/*" onChange={(e) => setPhotoFile(e.target.files[0])} style={{ fontSize: 12 }} />
+                  <div style={{ display: "flex", gap: 10 }}>
+                    <button className="btn-major" onClick={handleSaveProfile} disabled={savingProfile}>
+                      {savingProfile ? "Saving..." : "Save"}
+                    </button>
+                    <button className="btn-major-outline" onClick={() => setEditingProfile(false)}>Cancel</button>
+                  </div>
+                </div>
+              )}
+            </section>
 
             <section>
               <h2 style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--grey-hover)", marginBottom: 12 }}>
@@ -64,7 +108,7 @@ export default function AccountPage() {
               </h2>
               {orders.length === 0 ? (
                 <p style={{ fontSize: 12, color: "var(--grey-hover)" }}>
-                  No orders yet — once checkout is live, orders and rentals will appear here with status tracking.
+                  No orders yet: once checkout is live, orders and rentals will appear here with status tracking.
                 </p>
               ) : (
                 <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>

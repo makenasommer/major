@@ -59,6 +59,18 @@ export default function ProductCard({ listing }) {
           ${(listing.price / 100).toFixed(2)}
           {isRental && " / day"}
         </p>
+        {(listing.sellerUsername || listing.sellerName) && (
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 6 }}>
+            <div style={{ position: "relative", width: 16, height: 16, borderRadius: "50%", overflow: "hidden", background: "var(--light-grey)", flexShrink: 0 }}>
+              {listing.sellerPhotoURL && (
+                <Image src={listing.sellerPhotoURL} alt={listing.sellerUsername || listing.sellerName} fill style={{ objectFit: "cover" }} />
+              )}
+            </div>
+            <span style={{ fontSize: 10, color: "var(--grey-hover)" }}>
+              {listing.sellerUsername || listing.sellerName}
+            </span>
+          </div>
+        )}
       </div>
     </Link>
   );

@@ -1,12 +1,14 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import SearchIcon from "./icons/SearchIcon";
 import ProfileIcon from "./icons/ProfileIcon";
 import BagIcon from "./icons/BagIcon";
 import SearchOverlay from "./SearchOverlay";
 import CartDrawer from "./CartDrawer";
 import CountrySelector from "./CountrySelector";
+import useAuth from "@/lib/AuthContext";
 
 const SHOP_CATEGORIES = [
   { label: "Dorm Essentials", href: "/shop?category=dorm-essentials" },
@@ -14,6 +16,8 @@ const SHOP_CATEGORIES = [
   { label: "Lab Equipment", href: "/shop?category=lab-equipment" },
   { label: "Art Materials", href: "/shop?category=art-materials" },
   { label: "Books", href: "/shop?category=books" },
+  { label: "Small Business on Campus", href: "/shop?category=small-business" },
+  { label: "Services", href: "/shop?category=services" },
   { label: "Rentals", href: "/shop?type=rent" },
   { label: "Other", href: "/shop?category=other" },
 ];
@@ -22,13 +26,13 @@ const SELL_LINKS = [
   { label: "List to Sell", href: "/sell/new?type=sell" },
   { label: "List to Rent", href: "/sell/new?type=rent" },
   { label: "Seller Dashboard", href: "/account/selling" },
-  { label: "Seller Guidelines", href: "/sell/guidelines" },
 ];
 
-// Static per-campus currency — no live conversion, see spec doc.
+// Static per-campus currency: no live conversion, see spec doc.
 const CAMPUS_CURRENCY = "USD";
 
 export default function Header({ campusName = "UCLA" }) {
+  const { user } = useAuth();
   const [openDropdown, setOpenDropdown] = useState(null); // "shop" | "sell" | null
   const [searchOpen, setSearchOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
@@ -138,7 +142,13 @@ export default function Header({ campusName = "UCLA" }) {
           </button>
 
           <Link href="/account" aria-label="Account" style={{ display: "flex" }}>
-            <ProfileIcon />
+            {user?.photoURL ? (
+              <div style={{ position: "relative", width: 16, height: 16, borderRadius: "50%", overflow: "hidden" }}>
+                <Image src={user.photoURL} alt={user.username || user.name} fill style={{ objectFit: "cover" }} />
+              </div>
+            ) : (
+              <ProfileIcon />
+            )}
           </Link>
 
           <button

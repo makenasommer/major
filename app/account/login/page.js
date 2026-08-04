@@ -74,6 +74,6 @@ function friendlyError(err) {
   const code = err?.code || "";
   if (code.includes("wrong-password") || code.includes("invalid-credential")) return "Incorrect email or password.";
   if (code.includes("user-not-found")) return "No account found with that email.";
-  if (code.includes("too-many-requests")) return "Too many attempts — please wait a moment and try again.";
-  return err.message || "Something went wrong — please try again.";
+  if (code.includes("too-many-requests")) return "Too many attempts: please wait a moment and try again.";
+  return err.message || "Something went wrong: please try again.";
 }

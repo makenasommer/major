@@ -18,7 +18,7 @@ export default function LeaveReviewPage() {
   function handleSubmit(e) {
     e.preventDefault();
     if (!text.trim()) return;
-    // PLACEHOLDER — in the real flow, this should only be reachable
+    // PLACEHOLDER: in the real flow, this should only be reachable
     // from a completed order tied to this seller, not open to anyone.
     submitReview({ rating, text: text.trim(), reviewerName: user?.name });
     setSubmitted(true);
@@ -41,7 +41,7 @@ export default function LeaveReviewPage() {
             <a href="/account/login" style={{ color: "var(--black)", textDecoration: "underline" }}>Log in</a> to leave a review.
           </p>
         ) : submitted ? (
-          <p style={{ fontSize: 12 }}>Thanks — your review has been posted.</p>
+          <p style={{ fontSize: 12 }}>Thanks: your review has been posted.</p>
         ) : (
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             <div>

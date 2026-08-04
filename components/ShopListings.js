@@ -10,7 +10,7 @@ export default function ShopListings({ listings }) {
   const canSeeCampusListings = isLoggedIn && isVerified;
   const visibleListings = canSeeCampusListings
     ? listings.filter((l) => l.campus === user.campus)
-    : listings; // logged-out preview — shows everything, unscoped, as a soft nudge to log in
+    : listings; // logged-out preview: shows everything, unscoped, as a soft nudge to log in
 
   return (
     <div>

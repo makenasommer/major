@@ -7,6 +7,8 @@ const CATEGORIES = [
   { value: "lab-equipment", label: "Lab Equipment" },
   { value: "art-materials", label: "Art Materials" },
   { value: "books", label: "Books" },
+  { value: "small-business", label: "Small Business on Campus" },
+  { value: "services", label: "Services" },
   { value: "other", label: "Other" },
 ];
 
