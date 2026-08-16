@@ -62,10 +62,8 @@ export default function Header({ campusName = "UCLA" }) {
           zIndex: 40,
         }}
       >
-        {/* Left: Home / Shop / Sell */}
+        {/* Left: Shop / Sell / Rent / Resources */}
         <nav ref={navRef} style={{ display: "flex", gap: 28, position: "relative" }}>
-          <Link href="/" className="nav-word">Home</Link>
-
           <div style={{ position: "relative" }}>
             <button
               className="nav-word"
@@ -111,6 +109,9 @@ export default function Header({ campusName = "UCLA" }) {
               </div>
             )}
           </div>
+
+          <Link href="/shop?type=rent" className="nav-word">Rent</Link>
+          <Link href="/resources" className="nav-word">Resources</Link>
         </nav>
 
         {/* Center: Wordmark (swap for <Image src="/major-logo.png" /> once final logo is ready) */}

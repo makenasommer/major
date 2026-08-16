@@ -145,7 +145,7 @@ export default function CountrySelector({ selected, onSelect }) {
         onMouseEnter={e => (e.target.style.color = '#999')}
         onMouseLeave={e => (e.target.style.color = '#000')}
       >
-        {current.flag} {current.code}
+        {current.code}
       </button>
 
       {open && (
@@ -212,8 +212,7 @@ export default function CountrySelector({ selected, onSelect }) {
                   onMouseEnter={e => (e.currentTarget.style.background = '#f5f5f5')}
                   onMouseLeave={e => (e.currentTarget.style.background = country.code === selected ? '#f5f5f5' : 'none')}
                 >
-                  <span style={{ fontSize: '18px' }}>{country.flag}</span>
-                  <span style={{ flex: 1 }}>{country.name}</span>
+                                    <span style={{ flex: 1 }}>{country.name}</span>
                   <span style={{ color: '#999', fontSize: '10px' }}>{country.currency}</span>
                 </button>
               ))}
