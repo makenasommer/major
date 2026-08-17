@@ -6,7 +6,6 @@ import ContactPopup from "@/components/ContactPopup";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CoverCarousel from "@/components/CoverCarousel";
-import TopBanner from "@/components/TopBanner";
 
 const CATEGORIES = [
   { label: "Dorm Essentials", href: "/shop?category=dorm-essentials" },
@@ -28,7 +27,6 @@ export default function Home() {
       {popup === "contact" && <ContactPopup onClose={() => setPopup(null)} />}
 
       <div className="page-fade-in">
-        <TopBanner />
         <Header />
 
         <CoverCarousel />
