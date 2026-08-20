@@ -40,19 +40,25 @@ export default function ResourcesPage() {
               <p style={{ fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--grey-hover)", marginBottom: 6 }}>
                 Campus / Reuse / Move-Out
               </p>
-              <p style={{ fontSize: 13 }}>{resources.reuse}</p>
+              <a href={resources.reuse.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: "var(--black)", textDecoration: "underline" }}>
+                {resources.reuse.label}
+              </a>
             </div>
             <div>
               <p style={{ fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--grey-hover)", marginBottom: 6 }}>
                 Local Donation Resources
               </p>
-              <p style={{ fontSize: 13 }}>{resources.donation}</p>
+              <a href={resources.donation.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: "var(--black)", textDecoration: "underline" }}>
+                {resources.donation.label}
+              </a>
             </div>
             <div>
               <p style={{ fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--grey-hover)", marginBottom: 6 }}>
                 E-Waste / Specialty
               </p>
-              <p style={{ fontSize: 13 }}>{resources.ewaste}</p>
+              <a href={resources.ewaste.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: "var(--black)", textDecoration: "underline" }}>
+                {resources.ewaste.label}
+              </a>
             </div>
           </div>
         )}
