@@ -42,12 +42,13 @@ export default function TermsPage() {
 
         <Section title="4. Meeting Up and Shipping">
           Use our in-app messaging to coordinate transactions. Always meet in public, well-lit campus locations. Major is not liable
-          for lost or damaged items but may help resolve disputes.
+          for lost or damaged items but may help resolve disputes. Refer to on campus security for immediate safety concerns.
         </Section>
 
         <Section title="5. Fees and Taxes">
           Sellers are charged a 10% fee. Buyers pay no additional fees. Users are responsible for their own taxes. Fee changes will be
-          announced in advance. Fees on refunded transactions are also refunded.
+          announced in advance. Fees on refunded transactions are also refunded. Members of Major Enviro Club & Major Equity are exempt 
+          from seller fees. Contact us to learn more, or reach out to our on campus partners for more information.
         </Section>
 
         <Section title="6. User Content">
@@ -74,7 +75,7 @@ export default function TermsPage() {
 
         <Section title="10. Prohibited & Restricted Items">
           <p style={{ marginBottom: 12 }}>
-            The following may not be listed or sold on Major. This list is illustrative, not exhaustive. Local, state, and federal
+            The following may not be listed or sold on Major. Campus, local, state, and federal
             laws may prohibit additional items.
           </p>
           <ul style={{ paddingLeft: 16, lineHeight: 2.2 }}>
