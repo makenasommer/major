@@ -7,9 +7,17 @@ export default function About() {
   return (
     <div className="page-fade-in" style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header />
-      <main style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", padding: "60px 24px 80px", textAlign: "center" }}>
-        <h1 style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 48 }}>About Us</h1>
-        <div style={{ fontSize: 12, lineHeight: 1.9, letterSpacing: "0.02em", maxWidth: 480 }}>
+      <main
+        style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          padding: "60px clamp(24px, 8vw, 120px) 80px",
+        }}
+      >
+        <h1 style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 48 }}>About</h1>
+        <div style={{ fontSize: 12, lineHeight: 1.9, letterSpacing: "0.02em", maxWidth: 640, textAlign: "left" }}>
           <p style={{ marginBottom: 24 }}>
             We provide the platform to acquire and sell essentials at subsidized rates with environmental consciousness in mind.
           </p>
