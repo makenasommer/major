@@ -19,21 +19,24 @@ export default function About() {
         <h1 style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 48 }}>About</h1>
         <div style={{ fontSize: 12, lineHeight: 1.9, letterSpacing: "0.02em", maxWidth: 640, textAlign: "left" }}>
           <p style={{ marginBottom: 24 }}>
-            We provide the platform to acquire and sell essentials at subsidized rates with environmental consciousness in mind.
+            Major is a platform for buying and selling student essentials at subsidized rates, with sustainable futures in mind.
+            Textbooks, lab equipment, game day merch, dorm decor, calculators, bikes, even braids and lashes from students working
+            within their own campus community.
           </p>
           <p style={{ marginBottom: 24 }}>
-            Textbooks, lab equipment, game day merch, dorm decor, calculators, bikes, even someone to braid your hair or do your lashes.
-            <br />Major started at the end of 2023 as an observation of necessity.
+            Anyone who&rsquo;s spent time around a campus knows the pattern. Students scavenge for materials they can&rsquo;t afford,
+            fail a quiz because they never got the textbook, then toss all of it in a dumpster the second the quarter ends. It happens
+            at art school, it happens at a big state university, it happens everywhere in between. Major treats that as one problem,
+            the cost of what students need, and the waste left over once they&rsquo;re done with it.
           </p>
-          <p style={{ marginBottom: 24, color: "var(--grey-hover)" }}>
-            Our founder watched students scavenge for art materials to keep up with their projects. Later, home in Los Angeles, she saw
-            some students fail quizzes simply because they could not afford the textbook. She personally bought a plethora of books only
-            to read a single chapter. Later she became aware of the millions of tons of waste each year from dorm essentials and these
-            books, that many cannot afford, harming our world and student potential.
+          <p style={{ marginBottom: 24 }}>
+            The system was designed to work the same way no matter where you are. We work with partners across Cal States, UC
+            campuses, private universities, and community colleges, all pushing toward the same thing: making educational access
+            and sustainable living the norm on every campus, not the exception on a few.
           </p>
-          <p style={{ color: "var(--grey-hover)" }}>
-            The need for a campus ecosystem infrastructure was universal, even if the exact material needs or reasons for need differed
-            across demographics. So our founder built a singular, transferable infrastructure, a constant for students no matter the campus.
+          <p>
+            We&rsquo;ve put in the years on the operations and the partnerships it takes to run something like this properly, and
+            that&rsquo;s what campuses and sustainability partners are actually trusting when they work with Major.
           </p>
         </div>
       </main>
