@@ -7,7 +7,15 @@ import {
   EMAILJS_CONTACT_TEMPLATE,
 } from "@/lib/emailjs";
 
-const empty = { firstName: "", lastName: "", phone: "", email: "", reason: "" };
+const empty = {
+  firstName: "",
+  lastName: "",
+  username: "",
+  email: "",
+  university: "",
+  reason: "",
+  message: "",
+};
 
 export default function ContactPopup({ onClose }) {
   const [fields, setFields] = useState(empty);
@@ -16,12 +24,13 @@ export default function ContactPopup({ onClose }) {
 
   const validate = () => {
     const e = {};
-    if (!fields.firstName.trim()) e.firstName = "field required";
-    if (!fields.lastName.trim())  e.lastName  = "field required";
-    if (!fields.phone.trim())     e.phone     = "field required";
-    if (!fields.email.trim())     e.email     = "field required";
+    if (!fields.firstName.trim())  e.firstName  = "field required";
+    if (!fields.lastName.trim())   e.lastName   = "field required";
+    if (!fields.email.trim())      e.email      = "field required";
     else if (!/\S+@\S+\.\S+/.test(fields.email)) e.email = "valid email required";
-    if (!fields.reason.trim())    e.reason    = "field required";
+    if (!fields.university.trim()) e.university = "field required";
+    if (!fields.reason.trim())     e.reason     = "field required";
+    if (!fields.message.trim())    e.message    = "field required";
     return e;
   };
 
@@ -36,9 +45,11 @@ export default function ContactPopup({ onClose }) {
         {
           first_name: fields.firstName,
           last_name:  fields.lastName,
-          phone:      fields.phone,
+          username:   fields.username,
           email:      fields.email,
+          university: fields.university,
           reason:     fields.reason,
+          message:    fields.message,
         },
         EMAILJS_PUBLIC_KEY
       );
@@ -73,17 +84,24 @@ export default function ContactPopup({ onClose }) {
             <input value={fields.lastName} onChange={setField("lastName")} />
             {errors.lastName && <p className="field-error">{errors.lastName}</p>}
 
-            <label>phone number</label>
-            <input type="tel" value={fields.phone} onChange={setField("phone")} />
-            {errors.phone && <p className="field-error">{errors.phone}</p>}
+            <label>username (optional)</label>
+            <input value={fields.username} onChange={setField("username")} />
 
             <label>email</label>
             <input type="email" value={fields.email} onChange={setField("email")} />
             {errors.email && <p className="field-error">{errors.email}</p>}
 
+            <label>university</label>
+            <input value={fields.university} onChange={setField("university")} />
+            {errors.university && <p className="field-error">{errors.university}</p>}
+
             <label>reason for contact</label>
-            <textarea value={fields.reason} onChange={setField("reason")} />
+            <input value={fields.reason} onChange={setField("reason")} />
             {errors.reason && <p className="field-error">{errors.reason}</p>}
+
+            <label>message</label>
+            <textarea value={fields.message} onChange={setField("message")} />
+            {errors.message && <p className="field-error">{errors.message}</p>}
 
             <button
               className="popup-submit"
