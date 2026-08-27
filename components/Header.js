@@ -114,20 +114,24 @@ export default function Header({ campusName = "UCLA" }) {
           <Link href="/resources" className="nav-word">Resources</Link>
         </nav>
 
-        {/* Center: Wordmark (swap for <Image src="/major-logo.png" /> once final logo is ready) */}
+        {/* Center: Logo */}
         <Link
           href="/"
+          aria-label="Major"
           style={{
-            fontFamily: "var(--font)",
-            fontWeight: 500,
-            fontSize: 15,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
+            display: "flex",
+            alignItems: "center",
             textDecoration: "none",
-            color: "var(--black)",
           }}
         >
-          Major
+          <Image
+            src="/major_logo_transparent.svg"
+            alt="Major"
+            width={110}
+            height={28}
+            priority
+            style={{ height: 28, width: "auto", objectFit: "contain" }}
+          />
         </Link>
 
         {/* Right: Currency / Search / Profile / Bag */}
