@@ -1,12 +1,23 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
 function DownloadAppMenu() {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    function handleClick(e) {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
 
   return (
-    <div style={{ position: "relative" }}>
+    <div ref={menuRef} style={{ position: "relative" }}>
       <button
         onClick={() => setOpen((o) => !o)}
         className="footer-word"
@@ -29,10 +40,24 @@ function DownloadAppMenu() {
             zIndex: 10,
           }}
         >
-          <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" className="footer-word" style={{ padding: "10px 14px" }}>
+          <a
+            href="https://apps.apple.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-word"
+            style={{ padding: "10px 14px" }}
+            onClick={() => setOpen(false)}
+          >
             App Store
           </a>
-          <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" className="footer-word" style={{ padding: "10px 14px" }}>
+          <a
+            href="https://play.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-word"
+            style={{ padding: "10px 14px" }}
+            onClick={() => setOpen(false)}
+          >
             Google Play
           </a>
         </div>
@@ -59,14 +84,12 @@ export default function Footer() {
           <Link href="/faq" className="footer-word">FAQ</Link>
           <Link href="/privacy" className="footer-word">Privacy</Link>
         </div>
-
         {/* Column 2 */}
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <Link href="/about" className="footer-word">About</Link>
           <Link href="/sustainability" className="footer-word">Sustainability &amp; Impact</Link>
           <Link href="/partners" className="footer-word">Partners</Link>
         </div>
-
         {/* Column 3 */}
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <Link href="/contact" className="footer-word">Contact</Link>
@@ -74,7 +97,6 @@ export default function Footer() {
           <Link href="/demo" className="footer-word">Demo</Link>
         </div>
       </div>
-
       <p style={{ fontSize: 10, color: "var(--grey-hover)" }}>
         Copyright &ldquo;Major&rdquo; 2023
       </p>
