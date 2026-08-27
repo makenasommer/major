@@ -35,33 +35,37 @@ export default function OfferPopup() {
         onClick={(e) => e.stopPropagation()}
         style={{
           background: "var(--white)",
-          maxWidth: 380,
+          maxWidth: 400,
           width: "90vw",
-          padding: 32,
+          padding: "44px 40px 36px",
           textAlign: "center",
           position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          gap: 24,
         }}
       >
         <button
           onClick={dismiss}
           aria-label="Close"
-          style={{ position: "absolute", top: 12, right: 14, background: "none", border: "none", cursor: "pointer", fontSize: 16 }}
+          style={{ position: "absolute", top: 16, right: 16, background: "none", border: "none", cursor: "pointer", fontSize: 18, lineHeight: 1 }}
         >
           &times;
         </button>
 
-        <h2 style={{ fontSize: 14, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 16 }}>
+        <h2 style={{ fontSize: 14, textTransform: "uppercase", letterSpacing: "0.06em", margin: 0 }}>
           10% Off On Us!
         </h2>
-        <p style={{ fontSize: 12, color: "var(--grey-hover)", lineHeight: 1.7, marginBottom: 20 }}>
+
+        <p style={{ fontSize: 12, lineHeight: 1.7, margin: 0 }}>
           Join Major Honors and get 10% off your first purchase, plus early access to promos, events, and content
           to make each day on campus a little better. For you and our Earth, from Major.
         </p>
 
         {submitted ? (
-          <p style={{ fontSize: 12 }}>You&rsquo;re in! Check your email for your code.</p>
+          <p style={{ fontSize: 12, margin: 0 }}>You&rsquo;re in! Check your email for your code.</p>
         ) : (
-          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             <input
               type="email"
               placeholder="EMAIL"
@@ -80,7 +84,7 @@ export default function OfferPopup() {
           </form>
         )}
 
-        <p style={{ fontSize: 9, fontStyle: "italic", color: "var(--grey-hover)", marginTop: 16, lineHeight: 1.6 }}>
+        <p style={{ fontSize: 9, fontStyle: "italic", margin: 0, lineHeight: 1.6 }}>
           Offers cannot be combined with any other discount, promo, or percentage off. Limit one per transaction.
           Exceptions for Major Equity &amp; Enviro Club.
         </p>
