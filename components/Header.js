@@ -114,11 +114,15 @@ export default function Header({ campusName = "UCLA" }) {
           <Link href="/resources" className="nav-word">Resources</Link>
         </nav>
 
-        {/* Center: Logo */}
+        {/* Center: Logo, absolutely positioned so it's centered regardless of left/right content width */}
         <Link
           href="/"
           aria-label="Major"
           style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
             display: "flex",
             alignItems: "center",
             textDecoration: "none",
