@@ -18,7 +18,7 @@ export default function PartnersPage() {
 
       <section
         style={{
-          background: "var(--light-grey)",
+          background: "#F3F1EE",
           padding: "80px 36px",
           textAlign: "center",
           display: "flex",

@@ -6,12 +6,9 @@ import { CAMPUS_RESOURCES } from "@/lib/campusResources";
 
 export default function ResourcesPage() {
   const { user, isLoggedIn, isVerified, ready } = useAuth();
-
   if (!ready) return null;
-
   const canSee = isLoggedIn && isVerified;
   const resources = canSee ? CAMPUS_RESOURCES[user.campus] : null;
-
   return (
     <div className="page-fade-in">
       <Header />
@@ -19,12 +16,6 @@ export default function ResourcesPage() {
         <h1 style={{ fontSize: 14, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 20 }}>
           Resources
         </h1>
-
-        <p style={{ fontSize: 12, color: "var(--grey-hover)", lineHeight: 1.8, marginBottom: 36 }}>
-          To connect with local donation, e-waste, or move-in/move-out assistance on campus, please connect with
-          your on campus organizations.
-        </p>
-
         {!canSee ? (
           <p style={{ fontSize: 12, color: "var(--grey-hover)", lineHeight: 1.8 }}>
             Please login to see your specific campus resources and on campus organizations to assist in
