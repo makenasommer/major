@@ -1,22 +1,40 @@
+"use client";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import PartnersContactForm from "@/components/PartnersContactForm";
-
-export const metadata = { title: "Partners: Major" };
+import PartnerLogoCarousel from "@/components/PartnerLogoCarousel";
+import CollabPopup from "@/components/CollabPopup";
 
 export default function PartnersPage() {
+  const [showCollab, setShowCollab] = useState(false);
+
   return (
     <div className="page-fade-in">
+      {showCollab && <CollabPopup onClose={() => setShowCollab(false)} />}
+
       <Header />
-      <main style={{ maxWidth: 480, margin: "60px auto", padding: "0 24px 100px", textAlign: "center" }}>
-        <h1 style={{ fontWeight: 400, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 20 }}>
-          Partners
-        </h1>
-        <p style={{ fontSize: 12, color: "var(--grey-hover)", marginBottom: 32, lineHeight: 1.8 }}>
+
+      <PartnerLogoCarousel />
+
+      <section
+        style={{
+          background: "var(--light-grey)",
+          padding: "80px 36px",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 28,
+        }}
+      >
+        <p style={{ fontSize: 14, maxWidth: 480 }}>
           To become an official partner or collaborate, please contact us using this form.
         </p>
-        <PartnersContactForm />
-      </main>
+        <button className="btn-major" onClick={() => setShowCollab(true)}>
+          Collab
+        </button>
+      </section>
+
       <Footer />
     </div>
   );
