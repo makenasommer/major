@@ -13,6 +13,12 @@ const instrumentSans = Instrument_Sans({
 export const metadata = {
   title: "major",
   description: "major: campus marketplace",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Major",
+  },
   openGraph: {
     title: "major",
     description: "major: campus marketplace",
@@ -25,6 +31,10 @@ export const metadata = {
       },
     ],
   },
+};
+
+export const viewport = {
+  themeColor: "#000000",
 };
 
 export default function RootLayout({ children }) {
