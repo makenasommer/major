@@ -1,24 +1,55 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 // Swap these image paths out anytime for real campus photos.
-const SLIDES = [
+const BASE_SLIDES = [
   { src: "/images/home-photo-1.png", alt: "Shop Game Day", href: "/shop?category=merch" },
   { src: "/images/home-photo-2.png", alt: "Dorm Essentials", href: "/shop?category=dorm-essentials" },
   { src: "/images/about-portrait.png", alt: "Lab Equipment", href: "/shop?category=lab-equipment" },
   { src: "/images/about-bottom.png", alt: "Campus Life", href: "/shop" },
 ];
 
+// Duplicated so the auto-scroll can loop seamlessly without a visible jump.
+const SLIDES = [...BASE_SLIDES, ...BASE_SLIDES];
+
+const AUTO_SCROLL_SPEED = 0.4; // pixels per animation frame — slow, steady drift
+
 export default function CoverCarousel() {
   const trackRef = useRef(null);
   const isDragging = useRef(false);
   const dragStartX = useRef(0);
   const scrollStartX = useRef(0);
+  const isPaused = useRef(false);
+  const rafId = useRef(null);
+  const halfWidth = useRef(0);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    // Measure the width of one full set of slides (half the total scrollWidth,
+    // since the list is duplicated) so we know when to loop back to 0.
+    halfWidth.current = track.scrollWidth / 2;
+
+    function step() {
+      if (!isPaused.current && track) {
+        track.scrollLeft += AUTO_SCROLL_SPEED;
+        if (track.scrollLeft >= halfWidth.current) {
+          track.scrollLeft -= halfWidth.current;
+        }
+      }
+      rafId.current = requestAnimationFrame(step);
+    }
+
+    rafId.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafId.current);
+  }, []);
 
   function handlePointerDown(e) {
     isDragging.current = true;
+    isPaused.current = true;
     dragStartX.current = e.clientX;
     scrollStartX.current = trackRef.current.scrollLeft;
     trackRef.current.style.cursor = "grabbing";
@@ -32,6 +63,7 @@ export default function CoverCarousel() {
 
   function endDrag() {
     isDragging.current = false;
+    isPaused.current = false;
     if (trackRef.current) trackRef.current.style.cursor = "grab";
   }
 
@@ -43,27 +75,27 @@ export default function CoverCarousel() {
         onPointerMove={handlePointerMove}
         onPointerUp={endDrag}
         onPointerLeave={endDrag}
+        onMouseEnter={() => { isPaused.current = true; }}
+        onMouseLeave={() => { if (!isDragging.current) isPaused.current = false; }}
         style={{
           display: "flex",
           gap: 24,
           overflowX: "auto",
-          scrollSnapType: "x mandatory",
           cursor: "grab",
           scrollbarWidth: "none",
         }}
         className="cover-carousel-track"
       >
-        {SLIDES.map((slide) => (
+        {SLIDES.map((slide, i) => (
           <Link
             href={slide.href}
-            key={slide.src}
+            key={`${slide.src}-${i}`}
             draggable={false}
             style={{
               position: "relative",
               flex: "0 0 auto",
               width: "min(340px, 78vw)",
               aspectRatio: "3 / 4",
-              scrollSnapAlign: "start",
               overflow: "hidden",
               display: "block",
             }}
@@ -74,13 +106,12 @@ export default function CoverCarousel() {
               fill
               sizes="(max-width: 768px) 78vw, 340px"
               style={{ objectFit: "cover", pointerEvents: "none" }}
-              priority
+              priority={i < 4}
             />
           </Link>
         ))}
       </div>
 
-      {/* Hide scrollbar in webkit browsers without hiding it in the CSS var scope */}
       <style jsx>{`
         .cover-carousel-track::-webkit-scrollbar {
           display: none;

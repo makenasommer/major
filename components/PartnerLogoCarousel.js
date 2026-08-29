@@ -1,17 +1,46 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PARTNERS } from "@/lib/partnersData";
+
+// Duplicated so the auto-scroll can loop seamlessly without a visible jump.
+const LOGOS = [...PARTNERS, ...PARTNERS];
+
+const AUTO_SCROLL_SPEED = 0.4; // pixels per animation frame — slow, steady drift
 
 export default function PartnerLogoCarousel() {
   const trackRef = useRef(null);
   const isDragging = useRef(false);
   const dragStartX = useRef(0);
   const scrollStartX = useRef(0);
+  const isPaused = useRef(false);
+  const rafId = useRef(null);
+  const halfWidth = useRef(0);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    halfWidth.current = track.scrollWidth / 2;
+
+    function step() {
+      if (!isPaused.current && track) {
+        track.scrollLeft += AUTO_SCROLL_SPEED;
+        if (track.scrollLeft >= halfWidth.current) {
+          track.scrollLeft -= halfWidth.current;
+        }
+      }
+      rafId.current = requestAnimationFrame(step);
+    }
+
+    rafId.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafId.current);
+  }, []);
 
   function handlePointerDown(e) {
     isDragging.current = true;
+    isPaused.current = true;
     dragStartX.current = e.clientX;
     scrollStartX.current = trackRef.current.scrollLeft;
     trackRef.current.style.cursor = "grabbing";
@@ -25,6 +54,7 @@ export default function PartnerLogoCarousel() {
 
   function endDrag() {
     isDragging.current = false;
+    isPaused.current = false;
     if (trackRef.current) trackRef.current.style.cursor = "grab";
   }
 
@@ -36,18 +66,19 @@ export default function PartnerLogoCarousel() {
         onPointerMove={handlePointerMove}
         onPointerUp={endDrag}
         onPointerLeave={endDrag}
+        onMouseEnter={() => { isPaused.current = true; }}
+        onMouseLeave={() => { if (!isDragging.current) isPaused.current = false; }}
         style={{
           display: "flex",
           gap: 64,
           overflowX: "auto",
-          scrollSnapType: "x proximity",
           cursor: "grab",
           scrollbarWidth: "none",
           alignItems: "center",
         }}
         className="partner-logo-track"
       >
-        {PARTNERS.map((partner, i) => (
+        {LOGOS.map((partner, i) => (
           <Link
             href={partner.href}
             key={`${partner.name}-${i}`}
@@ -60,7 +91,6 @@ export default function PartnerLogoCarousel() {
               flex: "0 0 auto",
               width: 160,
               height: 100,
-              scrollSnapAlign: "start",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

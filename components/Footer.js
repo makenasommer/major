@@ -68,7 +68,7 @@ function DownloadAppMenu() {
 
 export default function Footer() {
   return (
-    <footer style={{ borderTop: "1px solid rgba(0,0,0,0.08)", marginTop: 60, padding: "48px 36px 28px" }}>
+    <footer style={{ marginTop: 60, padding: "48px 36px 28px" }}>
       <div
         style={{
           display: "flex",
@@ -97,7 +97,7 @@ export default function Footer() {
           <Link href="/demo" className="footer-word">Demo</Link>
         </div>
       </div>
-      <p style={{ fontSize: 10, color: "var(--grey-hover)" }}>
+      <p style={{ fontSize: 10, color: "var(--black)" }}>
         Copyright &ldquo;Major&rdquo; 2023
       </p>
     </footer>
