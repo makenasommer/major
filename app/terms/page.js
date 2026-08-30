@@ -54,7 +54,7 @@ export default function TermsPage() {
         <Section title="5. Fees and Taxes">
           Sellers are charged a 10% fee. Buyers pay no additional fees. Users are responsible for their own taxes. Fee changes will be
           announced in advance. Fees on refunded transactions are also refunded. Members of Major Enviro Club & Major Equity are exempt 
-          from seller fees. Contact us to learn more, or reach out to our on campus partners for more information.
+          from any fees. Contact us to learn more, or reach out to our on campus partners for more information.
         </Section>
 
         <Section title="6. User Content">
