@@ -24,6 +24,20 @@ const goals = [
 export default function Sustainability() {
   return (
     <div className="page-fade-in" style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <style>{`
+        .sdg-goal-icon {
+          width: 100%;
+          height: auto;
+          display: block;
+          mix-blend-mode: multiply;
+          transition: transform 0.25s ease;
+          cursor: pointer;
+        }
+        .sdg-goal-link:hover .sdg-goal-icon,
+        .sdg-goal-link:focus-visible .sdg-goal-icon {
+          transform: scale(1.08);
+        }
+      `}</style>
       <Header />
       <main
         style={{
@@ -86,22 +100,10 @@ export default function Sustainability() {
               href={goal.href}
               target="_blank"
               rel="noopener noreferrer"
+              className="sdg-goal-link"
               style={{ display: "block", width: "100%", maxWidth: 190 }}
             >
-              <img
-                src={goal.src}
-                alt={goal.alt}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                  mixBlendMode: "multiply",
-                  transition: "transform 0.25s ease",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.08)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-              />
+              <img src={goal.src} alt={goal.alt} className="sdg-goal-icon" />
             </a>
           ))}
         </div>
