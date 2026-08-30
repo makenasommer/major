@@ -17,9 +17,15 @@ export default function TermsPage() {
     <div className="page-fade-in">
       <Header />
       <main style={{ maxWidth: 680, margin: "0 auto", padding: "60px 40px 120px", lineHeight: 1.8 }}>
-        <h1 style={{ fontWeight: 400, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 40 }}>
+        <h1 style={{ fontWeight: 400, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 16 }}>
           Terms &amp; Agreements
         </h1>
+
+        <p style={{ color: "var(--grey-hover)", fontSize: 12, marginBottom: 40 }}>
+          &ldquo;Major&rdquo; refers to the company operating this platform. &ldquo;majoroncampus.com&rdquo; is simply the web
+          address and site name used to access Major&rsquo;s services, not a separate business or brand. References to
+          &ldquo;the Site&rdquo; throughout these Terms refer to majoroncampus.com, operated by Major.
+        </p>
 
         <Section title="1. Permitted Use">
           You may use Major to sell items and services you own and have the right to offer, upload compliant content, and browse,
@@ -48,7 +54,7 @@ export default function TermsPage() {
         <Section title="5. Fees and Taxes">
           Sellers are charged a 10% fee. Buyers pay no additional fees. Users are responsible for their own taxes. Fee changes will be
           announced in advance. Fees on refunded transactions are also refunded. Members of Major Enviro Club & Major Equity are exempt 
-          from seller fees. Contact us to learn more, or reach out to our on campus partners for more information.
+          from any fees. Contact us to learn more, or reach out to our on campus partners for more information.
         </Section>
 
         <Section title="6. User Content">
