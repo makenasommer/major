@@ -22,22 +22,13 @@ export default function AccessibilityPage() {
         </h1>
 
         <Section title="Our Commitment">
-          Major is committed to making our platform usable by everyone, including students with disabilities. We're actively
-          working to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA, and we treat accessibility as an
-          ongoing responsibility rather than a one-time fix.
+     Major is committed to providing a platform that is accessible to the widest possible audience, regardless of technology or ability. We are actively working to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA and will continue making improvements toward that standard to ensure inclusiveness for all of our users.
+     If you experience any difficulty accessing any part of this platform, please contact us
         </Section>
 
-        <Section title="What We're Working On">
-          This includes readable color contrast, keyboard navigation for menus and forms, accessible names for buttons and
-          form fields, and support for screen readers. As we add new features, we review them against these same standards.
-        </Section>
+      
 
-        <Section title="Run Into a Problem?">
-          If you experience a barrier using Major, or have feedback on how we can do better, please{" "}
-          <a href="/contact" style={{ color: "var(--black)", textDecoration: "underline" }}>contact us</a>. Let us know the
-          page, what happened, and what device or assistive technology you were using, if applicable, so we can look into it
-          directly.
-        </Section>
+      
       </main>
       <Footer />
     </div>
