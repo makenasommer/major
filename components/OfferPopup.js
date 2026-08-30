@@ -19,6 +19,15 @@ export default function OfferPopup() {
     setVisible(false);
   }
 
+  useEffect(() => {
+    if (!visible) return;
+    function handleKeyDown(e) {
+      if (e.key === "Escape") dismiss();
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [visible]);
+
   function handleSubmit(e) {
     e.preventDefault();
     if (!email.trim()) return;
@@ -33,6 +42,9 @@ export default function OfferPopup() {
     <div className="overlay" onClick={dismiss}>
       <div
         onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="offer-popup-heading"
         style={{
           background: "var(--white)",
           maxWidth: 400,
@@ -53,7 +65,7 @@ export default function OfferPopup() {
           &times;
         </button>
 
-        <h2 style={{ fontSize: 14, textTransform: "uppercase", letterSpacing: "0.06em", margin: 0 }}>
+        <h2 id="offer-popup-heading" style={{ fontSize: 14, textTransform: "uppercase", letterSpacing: "0.06em", margin: 0 }}>
           10% Off On Us!
         </h2>
 
@@ -68,6 +80,7 @@ export default function OfferPopup() {
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             <input
               type="email"
+              aria-label="Email"
               placeholder="EMAIL"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

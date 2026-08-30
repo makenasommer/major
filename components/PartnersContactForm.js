@@ -4,7 +4,7 @@ import emailjs from "@emailjs/browser";
 import {
   EMAILJS_PUBLIC_KEY,
   EMAILJS_SERVICE_ID,
-  EMAILJS_PARTNERS_TEMPLATE, // add this export to @/lib/emailjs — see note below
+  EMAILJS_PARTNERS_TEMPLATE,
 } from "@/lib/emailjs";
 
 const empty = { firstName: "", lastName: "", email: "", affiliation: "", message: "" };
@@ -62,23 +62,23 @@ export default function PartnersContactForm() {
   return (
     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14, textAlign: "left" }}>
       <div>
-        <input placeholder="First name" value={fields.firstName} onChange={setField("firstName")} style={inputStyle} />
+        <input aria-label="First name" placeholder="First name" value={fields.firstName} onChange={setField("firstName")} style={inputStyle} />
         {errors.firstName && <p style={errorStyle}>{errors.firstName}</p>}
       </div>
       <div>
-        <input placeholder="Last name" value={fields.lastName} onChange={setField("lastName")} style={inputStyle} />
+        <input aria-label="Last name" placeholder="Last name" value={fields.lastName} onChange={setField("lastName")} style={inputStyle} />
         {errors.lastName && <p style={errorStyle}>{errors.lastName}</p>}
       </div>
       <div>
-        <input placeholder="EMAIL" value={fields.email} onChange={setField("email")} style={{ ...inputStyle, textTransform: "uppercase" }} />
+        <input aria-label="Email" placeholder="EMAIL" value={fields.email} onChange={setField("email")} style={{ ...inputStyle, textTransform: "uppercase" }} />
         {errors.email && <p style={errorStyle}>{errors.email}</p>}
       </div>
       <div>
-        <input placeholder="Affiliation" value={fields.affiliation} onChange={setField("affiliation")} style={inputStyle} />
+        <input aria-label="Affiliation" placeholder="Affiliation" value={fields.affiliation} onChange={setField("affiliation")} style={inputStyle} />
         {errors.affiliation && <p style={errorStyle}>{errors.affiliation}</p>}
       </div>
       <div>
-        <textarea placeholder="Message" value={fields.message} onChange={setField("message")} rows={4} style={inputStyle} />
+        <textarea aria-label="Message" placeholder="Message" value={fields.message} onChange={setField("message")} rows={4} style={inputStyle} />
         {errors.message && <p style={errorStyle}>{errors.message}</p>}
       </div>
 

@@ -81,30 +81,30 @@ export default function ContactPage() {
         ) : (
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             <div>
-              <input placeholder="First name" value={fields.firstName} onChange={setField("firstName")} style={inputStyle} />
+              <input aria-label="First name" placeholder="First name" value={fields.firstName} onChange={setField("firstName")} style={inputStyle} />
               {errors.firstName && <p style={errorStyle}>{errors.firstName}</p>}
             </div>
             <div>
-              <input placeholder="Last name" value={fields.lastName} onChange={setField("lastName")} style={inputStyle} />
+              <input aria-label="Last name" placeholder="Last name" value={fields.lastName} onChange={setField("lastName")} style={inputStyle} />
               {errors.lastName && <p style={errorStyle}>{errors.lastName}</p>}
             </div>
             <div>
-              <input placeholder="Username (optional)" value={fields.username} onChange={setField("username")} style={inputStyle} />
+              <input aria-label="Username (optional)" placeholder="Username (optional)" value={fields.username} onChange={setField("username")} style={inputStyle} />
             </div>
             <div>
-              <input placeholder="EMAIL" value={fields.email} onChange={setField("email")} style={{ ...inputStyle, textTransform: "uppercase" }} />
+              <input aria-label="Email" placeholder="EMAIL" value={fields.email} onChange={setField("email")} style={{ ...inputStyle, textTransform: "uppercase" }} />
               {errors.email && <p style={errorStyle}>{errors.email}</p>}
             </div>
             <div>
-              <input placeholder="University" value={fields.university} onChange={setField("university")} style={inputStyle} />
+              <input aria-label="University" placeholder="University" value={fields.university} onChange={setField("university")} style={inputStyle} />
               {errors.university && <p style={errorStyle}>{errors.university}</p>}
             </div>
             <div>
-              <input placeholder="Reason for contact" value={fields.reason} onChange={setField("reason")} style={inputStyle} />
+              <input aria-label="Reason for contact" placeholder="Reason for contact" value={fields.reason} onChange={setField("reason")} style={inputStyle} />
               {errors.reason && <p style={errorStyle}>{errors.reason}</p>}
             </div>
             <div>
-              <textarea placeholder="Message" value={fields.message} onChange={setField("message")} rows={4} style={inputStyle} />
+              <textarea aria-label="Message" placeholder="Message" value={fields.message} onChange={setField("message")} rows={4} style={inputStyle} />
               {errors.message && <p style={errorStyle}>{errors.message}</p>}
             </div>
 

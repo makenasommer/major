@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import {
   EMAILJS_PUBLIC_KEY,
@@ -21,6 +21,14 @@ export default function ContactPopup({ onClose }) {
   const [fields, setFields] = useState(empty);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === "Escape") onClose();
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
 
   const validate = () => {
     const e = {};
@@ -67,40 +75,40 @@ export default function ContactPopup({ onClose }) {
 
   return (
     <div className="overlay" onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
-      <div className="popup">
-        <button className="popup-close" onClick={onClose}>×</button>
+      <div className="popup" role="dialog" aria-modal="true" aria-labelledby="contact-popup-heading">
+        <button className="popup-close" onClick={onClose} aria-label="Close">×</button>
 
         {status === "done" ? (
           <p className="success-msg">message sent: we&apos;ll get back to you shortly.</p>
         ) : (
           <>
-            <h2>Contact</h2>
+            <h2 id="contact-popup-heading">Contact</h2>
 
-            <label>first name</label>
-            <input value={fields.firstName} onChange={setField("firstName")} />
+            <label htmlFor="contact-firstName">first name</label>
+            <input id="contact-firstName" value={fields.firstName} onChange={setField("firstName")} />
             {errors.firstName && <p className="field-error">{errors.firstName}</p>}
 
-            <label>last name</label>
-            <input value={fields.lastName} onChange={setField("lastName")} />
+            <label htmlFor="contact-lastName">last name</label>
+            <input id="contact-lastName" value={fields.lastName} onChange={setField("lastName")} />
             {errors.lastName && <p className="field-error">{errors.lastName}</p>}
 
-            <label>username (optional)</label>
-            <input value={fields.username} onChange={setField("username")} />
+            <label htmlFor="contact-username">username (optional)</label>
+            <input id="contact-username" value={fields.username} onChange={setField("username")} />
 
-            <label>email</label>
-            <input type="email" value={fields.email} onChange={setField("email")} />
+            <label htmlFor="contact-email">email</label>
+            <input id="contact-email" type="email" value={fields.email} onChange={setField("email")} />
             {errors.email && <p className="field-error">{errors.email}</p>}
 
-            <label>university</label>
-            <input value={fields.university} onChange={setField("university")} />
+            <label htmlFor="contact-university">university</label>
+            <input id="contact-university" value={fields.university} onChange={setField("university")} />
             {errors.university && <p className="field-error">{errors.university}</p>}
 
-            <label>reason for contact</label>
-            <input value={fields.reason} onChange={setField("reason")} />
+            <label htmlFor="contact-reason">reason for contact</label>
+            <input id="contact-reason" value={fields.reason} onChange={setField("reason")} />
             {errors.reason && <p className="field-error">{errors.reason}</p>}
 
-            <label>message</label>
-            <textarea value={fields.message} onChange={setField("message")} />
+            <label htmlFor="contact-message">message</label>
+            <textarea id="contact-message" value={fields.message} onChange={setField("message")} />
             {errors.message && <p className="field-error">{errors.message}</p>}
 
             <button

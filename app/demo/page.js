@@ -68,19 +68,19 @@ export default function DemoPage() {
         ) : (
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             <div>
-              <input required placeholder="First name" value={fields.firstName} onChange={setField("firstName")} style={inputStyle} />
+              <input required aria-label="First name" placeholder="First name" value={fields.firstName} onChange={setField("firstName")} style={inputStyle} />
               {errors.firstName && <p style={errorStyle}>{errors.firstName}</p>}
             </div>
             <div>
-              <input required placeholder="Last name" value={fields.lastName} onChange={setField("lastName")} style={inputStyle} />
+              <input required aria-label="Last name" placeholder="Last name" value={fields.lastName} onChange={setField("lastName")} style={inputStyle} />
               {errors.lastName && <p style={errorStyle}>{errors.lastName}</p>}
             </div>
             <div>
-              <input required placeholder="University" value={fields.university} onChange={setField("university")} style={inputStyle} />
+              <input required aria-label="University" placeholder="University" value={fields.university} onChange={setField("university")} style={inputStyle} />
               {errors.university && <p style={errorStyle}>{errors.university}</p>}
             </div>
             <div>
-              <input required type="email" placeholder="EMAIL" value={fields.email} onChange={setField("email")} style={{ ...inputStyle, textTransform: "uppercase" }} />
+              <input required aria-label="Email" type="email" placeholder="EMAIL" value={fields.email} onChange={setField("email")} style={{ ...inputStyle, textTransform: "uppercase" }} />
               {errors.email && <p style={errorStyle}>{errors.email}</p>}
             </div>
 

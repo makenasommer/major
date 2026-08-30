@@ -83,6 +83,7 @@ export default function Footer() {
           <Link href="/terms" className="footer-word">Terms</Link>
           <Link href="/faq" className="footer-word">FAQ</Link>
           <Link href="/privacy" className="footer-word">Privacy</Link>
+          <Link href="/accessibility" className="footer-word">Accessibility</Link>
         </div>
         {/* Column 2 */}
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>

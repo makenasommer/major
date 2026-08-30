@@ -50,6 +50,15 @@ export default function Header({ campusName = "UCLA" }) {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
+  // Close dropdown on Escape (keyboard accessibility)
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === "Escape") setOpenDropdown(null);
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <>
       <header
@@ -68,6 +77,8 @@ export default function Header({ campusName = "UCLA" }) {
             <button
               className="nav-word"
               onClick={() => setOpenDropdown(openDropdown === "shop" ? null : "shop")}
+              aria-expanded={openDropdown === "shop"}
+              aria-haspopup="true"
             >
               Shop
             </button>
@@ -91,6 +102,8 @@ export default function Header({ campusName = "UCLA" }) {
             <button
               className="nav-word"
               onClick={() => setOpenDropdown(openDropdown === "sell" ? null : "sell")}
+              aria-expanded={openDropdown === "sell"}
+              aria-haspopup="true"
             >
               Sell
             </button>
