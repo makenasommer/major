@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.majoroncampus.app",
+      "sha256_cert_fingerprints": [
+        "98:9B:D2:AF:9C:F1:6A:E0:DD:91:B5:44:2F:F5:65:5B:EC:08:5D:F4:39:F2:1F:DE:D3:60:6B:E0:2D:D8:AE:E2"
+      ]
+    }
+  }
+]
