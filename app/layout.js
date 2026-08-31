@@ -12,7 +12,7 @@ const instrumentSans = Instrument_Sans({
 
 export const metadata = {
   title: "major",
-  description: "major: campus marketplace",
+  description: "major",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -21,7 +21,7 @@ export const metadata = {
   },
   openGraph: {
     title: "major",
-    description: "major: campus marketplace",
+    description: "major",
     images: [
       {
         url: "/major-logo.png",
