@@ -18,10 +18,9 @@ export default function AccessibilityPage() {
       <Header />
       <main style={{ maxWidth: 680, margin: "0 auto", padding: "60px 40px 120px", lineHeight: 1.8 }}>
         <h1 style={{ fontWeight: 400, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 40 }}>
-          Accessibility
+          Our Commitment to Accessibility
         </h1>
 
-        <Section title="Our Commitment">
      Major is committed to providing a platform that is accessible to the widest possible audience, regardless of technology or ability. We are actively working to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA and will continue making improvements toward that standard to ensure inclusiveness for all of our users.
      If you experience any difficulty accessing any part of this platform, please contact us
         </Section>
