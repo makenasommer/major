@@ -16,13 +16,7 @@ export default function Home() {
 
       <div className="page-fade-in">
         <Header />
-
-        <div style={{ height: 24 }} />
-
         <CoverCarousel />
-
-        <div style={{ height: 24 }} />
-
         <Footer />
       </div>
     </>
