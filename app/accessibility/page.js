@@ -21,9 +21,9 @@ export default function AccessibilityPage() {
           Our Commitment to Accessibility
         </h1>
 
-        <Section title="Our Standard">
-          Major is committed to providing a platform that is accessible to the widest possible audience, regardless of technology or ability. We are actively working to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA and will continue making improvements toward that standard to ensure inclusiveness for all of our users.
-        </Section>
+       <p style={{ color: "var(--grey-hover)", fontSize: 12, marginBottom: 32 }}>
+  Major is committed to providing a platform that is accessible to the widest possible audience, regardless of technology or ability. We are actively working to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA and will continue making improvements toward that standard to ensure inclusiveness for all of our users.
+</p>
 
         <Section title="Contact Us">
           If you experience any difficulty accessing any part of this platform, please contact us.
