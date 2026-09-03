@@ -4,16 +4,48 @@ import Image from "next/image";
 import Link from "next/link";
 
 const BASE_SLIDES = [
-  { src: "/images/home-photo-1.png", alt: "Shop Game Day", href: "/shop?category=merch" },
-  { src: "/images/home-photo-2.png", alt: "Dorm Essentials", href: "/shop?category=dorm-essentials" },
-  { src: "/images/about-portrait.png", alt: "Lab Equipment", href: "/shop?category=lab-equipment" },
-  { src: "/images/about-bottom.png", alt: "Campus Life", href: "/shop" },
-  { src: "/images/home-photo-columbia-library.jpg", alt: "Campus Life", href: "/shop" },
-  { src: "/images/home-photo-ucla-archway-2.jpg", alt: "Dorm Essentials", href: "/shop?category=dorm-essentials" },
-  { src: "/images/home-photo-usc-arena.jpg", alt: "Shop Game Day", href: "/shop?category=merch" },
-  { src: "/images/home-photo-lmu-chapel.jpg", alt: "Campus Life", href: "/shop" },
-  { src: "/images/home-photo-campus-lawn.jpg", alt: "Campus Life", href: "/shop" },
-  { src: "/images/home-photo-ucla-field.jpg", alt: "Shop Game Day", href: "/shop?category=merch" },
+  {
+    src: "/images/uclaimage2.jpg", // converted from .HEIC — see note below
+    alt: "College consumption has changed",
+    href: "/shop",
+    title: "college consumption has changed, and it's major",
+    description: "",
+  },
+  {
+    src: "/images/columbiaimage1.jpg", // converted from .HEIC
+    alt: "Rent your textbooks",
+    href: "/shop?category=books",
+    title: "STILL NEED THAT PRE-1700 LIT BOOK?",
+    description: "Rent it — browse the books section.",
+  },
+  {
+    src: "/images/uscimage1.jpeg",
+    alt: "Game day merch",
+    href: "/shop?category=merch",
+    title: "READY FOR GAME DAY?",
+    description: "Shop here.",
+  },
+  {
+    src: "/images/yaleimage2.png",
+    alt: "Move-in essentials",
+    href: "/shop?category=dorm-essentials",
+    title: "MOVE-IN ESSENTIALS",
+    description: "",
+  },
+  {
+    src: "/images/uscimage2.jpg", // converted from .HEIC
+    alt: "Tutoring services",
+    href: "/shop?category=services", // adjust if your services route differs
+    title: "TUTORS AVAILABLE BEFORE THE GAME",
+    description: "",
+  },
+  {
+    src: "/images/lmuimage1.jpg", // converted from .HEIC
+    alt: "Browse majors",
+    href: "/shop", // placeholder — swap once you have a majors/programs page
+    title: "MAJOR CURIOUS?",
+    description: "Browse here.",
+  },
 ];
 
 // Duplicated so the auto-scroll can loop seamlessly without a visible jump.
@@ -93,22 +125,56 @@ export default function CoverCarousel() {
             key={`${slide.src}-${i}`}
             draggable={false}
             style={{
-              position: "relative",
               flex: "0 0 auto",
               width: "min(340px, 78vw)",
-              aspectRatio: "3 / 4",
-              overflow: "hidden",
-              display: "block",
+              display: "flex",
+              flexDirection: "column",
+              textDecoration: "none",
+              color: "inherit",
             }}
           >
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              sizes="(max-width: 768px) 78vw, 340px"
-              style={{ objectFit: "cover", pointerEvents: "none" }}
-              priority={i < 4}
-            />
+            <div
+              style={{
+                position: "relative",
+                width: "100%",
+                aspectRatio: "3 / 4",
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src={slide.src}
+                alt={slide.alt}
+                fill
+                sizes="(max-width: 768px) 78vw, 340px"
+                style={{ objectFit: "cover", pointerEvents: "none" }}
+                priority={i < 4}
+              />
+            </div>
+            <h3
+              style={{
+                fontSize: "1.1rem",
+                fontWeight: 400,
+                letterSpacing: "0.03em",
+                textTransform: "uppercase",
+                marginTop: 16,
+                marginBottom: slide.description ? 6 : 0,
+                lineHeight: 1.3,
+              }}
+            >
+              {slide.title}
+            </h3>
+            {slide.description && (
+              <p
+                style={{
+                  fontSize: "0.9rem",
+                  lineHeight: 1.5,
+                  color: "#555",
+                  margin: 0,
+                }}
+              >
+                {slide.description}
+              </p>
+            )}
           </Link>
         ))}
       </div>
