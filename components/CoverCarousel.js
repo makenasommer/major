@@ -61,7 +61,7 @@ const BASE_SLIDES = [
     alt: "Local donation and e-waste resources",
     href: "/resources", // adjust to your actual resources page route if different
     title: "DONATE LOCAL. RECYCLE SMART.",
-    description: "Find e-waste and donation resources near campus.",
+    description: "Find e-waste and donation resources on campus.",
   },
 ];
 
