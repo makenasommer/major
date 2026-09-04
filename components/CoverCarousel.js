@@ -2,45 +2,48 @@
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"], weight: ["400", "500"] });
 
 const BASE_SLIDES = [
   {
-    src: "/images/uclaimage2.jpg", // converted from .HEIC — see note below
+    src: "/images/ucla.jpg",
     alt: "College consumption has changed",
     href: "/shop",
     title: "college consumption has changed, and it's major",
     description: "",
   },
   {
-    src: "/images/columbiaimage1.jpg", // converted from .HEIC
+    src: "/images/columbia.jpg",
     alt: "Rent your textbooks",
     href: "/shop?category=books",
     title: "STILL NEED THAT PRE-1700 LIT BOOK?",
-    description: "Rent it — browse the books section.",
+    description: "Rent it. Browse the books section.",
   },
   {
-    src: "/images/uscimage1.jpeg",
+    src: "/images/uscimage3.jpg",
     alt: "Game day merch",
     href: "/shop?category=merch",
     title: "READY FOR GAME DAY?",
     description: "Shop here.",
   },
   {
-    src: "/images/yaleimage2.png",
+    src: "/images/yaleimage4.jpg",
     alt: "Move-in essentials",
     href: "/shop?category=dorm-essentials",
     title: "MOVE-IN ESSENTIALS",
     description: "",
   },
   {
-    src: "/images/uscimage2.jpg", // converted from .HEIC
+    src: "/images/uscimage2.jpg",
     alt: "Tutoring services",
     href: "/shop?category=services", // adjust if your services route differs
     title: "TUTORS AVAILABLE BEFORE THE GAME",
     description: "",
   },
   {
-    src: "/images/lmuimage1.jpg", // converted from .HEIC
+    src: "/images/lmu.jpg",
     alt: "Browse majors",
     href: "/shop", // placeholder — swap once you have a majors/programs page
     title: "MAJOR CURIOUS?",
@@ -151,24 +154,25 @@ export default function CoverCarousel() {
               />
             </div>
             <h3
+              className={lexendDeca.className}
               style={{
-                fontSize: "1.1rem",
+                fontSize: "24px",
                 fontWeight: 400,
-                letterSpacing: "0.03em",
+                letterSpacing: "0.02em",
                 textTransform: "uppercase",
                 marginTop: 16,
-                marginBottom: slide.description ? 6 : 0,
-                lineHeight: 1.3,
+                marginBottom: slide.description ? 8 : 0,
+                lineHeight: 1.2,
               }}
             >
               {slide.title}
             </h3>
             {slide.description && (
               <p
+                className={lexendDeca.className}
                 style={{
-                  fontSize: "0.9rem",
-                  lineHeight: 1.5,
-                  color: "#555",
+                  fontSize: "20px",
+                  lineHeight: 1.4,
                   margin: 0,
                 }}
               >
