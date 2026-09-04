@@ -11,7 +11,7 @@ const BASE_SLIDES = [
     src: "/images/ucla-balustrade.jpg",
     alt: "Campus consumption has changed",
     href: "/shop",
-    title: "campus consumption has changed",
+    title: "campus consumption has changed, and it's major",
     description: "",
   },
   {
@@ -32,21 +32,21 @@ const BASE_SLIDES = [
     src: "/images/yale-plate.png",
     alt: "Move-in essentials",
     href: "/shop?category=dorm-essentials",
-    title: "MOVE-IN ESSENTIALS",
+    title: "MOVE-IN ESSENTIALS WITH SUSTAINABILITY IN MIND",
     description: "",
   },
   {
     src: "/images/resale-shoe.jpg",
     alt: "Shop secondhand",
     href: "/shop?category=clothing", // adjust if your resale/clothing route differs
-    title: "SHOP SECONDHAND. KEEP IT ON CAMPUS.",
+    title: "KEEP IT ON CAMPUS, SUPPORT YOUR CLASSMATES' BUSINESS.",
     description: "",
   },
   {
     src: "/images/ucla-colonnade.jpg",
-    alt: "One student's done is another's dorm essential",
+    alt: "Decluttering before Study Abroad",
     href: "/shop?category=dorm-essentials",
-    title: "ONE STUDENT'S DONE IS ANOTHER'S DORM ESSENTIAL",
+    title: "DECLUTTERING BEFORE STUDY ABROAD?",
     description: "",
   },
   {
@@ -60,7 +60,7 @@ const BASE_SLIDES = [
     src: "/images/campus-interior.jpg",
     alt: "Local donation and e-waste resources",
     href: "/resources", // adjust to your actual resources page route if different
-    title: "DONATE LOCAL. RECYCLE SMART.",
+    title: "Donate local, recycle smart",
     description: "Find e-waste and donation resources on campus.",
   },
 ];
