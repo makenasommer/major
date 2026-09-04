@@ -8,42 +8,42 @@ const lexendDeca = Lexend_Deca({ subsets: ["latin"], weight: ["400", "500"] });
 
 const BASE_SLIDES = [
   {
-    src: "/images/ucla.jpg",
+    src: "/public/images/ucla.jpg",
     alt: "College consumption has changed",
     href: "/shop",
     title: "college consumption has changed, and it's major",
     description: "",
   },
   {
-    src: "/images/columbia.jpg",
+    src: "/public/images/columbia.jpg",
     alt: "Rent your textbooks",
     href: "/shop?category=books",
     title: "STILL NEED THAT PRE-1700 LIT BOOK?",
     description: "Rent it. Browse the books section.",
   },
   {
-    src: "/images/uscimage3.jpg",
+    src: "/public/images/uscimage3.jpg",
     alt: "Game day merch",
     href: "/shop?category=merch",
     title: "READY FOR GAME DAY?",
     description: "Shop here.",
   },
   {
-    src: "/images/yaleimage4.jpg",
+    src: "/public/images/yaleimage4.jpg",
     alt: "Move-in essentials",
     href: "/shop?category=dorm-essentials",
     title: "MOVE-IN ESSENTIALS",
     description: "",
   },
   {
-    src: "/images/uscimage2.jpg",
+    src: "/public/images/uscimage2.jpg",
     alt: "Tutoring services",
     href: "/shop?category=services", // adjust if your services route differs
     title: "TUTORS AVAILABLE BEFORE THE GAME",
     description: "",
   },
   {
-    src: "/images/lmu.jpg",
+    src: "/public/images/lmu.jpg",
     alt: "Browse majors",
     href: "/shop", // placeholder — swap once you have a majors/programs page
     title: "MAJOR CURIOUS?",
