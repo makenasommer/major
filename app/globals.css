@@ -23,7 +23,7 @@ html, body {
   color: var(--black);
   font-family: var(--font);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 11px;
   letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
   animation: pageFadeIn 1.2s var(--ease-out-expo);
@@ -47,7 +47,7 @@ html, body {
   color: var(--black);
   font-family: var(--font);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 11px;
   text-transform: uppercase;
   background: none;
   border: none;
@@ -67,7 +67,7 @@ html, body {
   color: var(--white);
   font-family: var(--font);
   font-weight: 500;
-  font-size: 14px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   border: none;
@@ -94,7 +94,7 @@ html, body {
   color: var(--black);
   font-family: var(--font);
   font-weight: 500;
-  font-size: 14px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   border: 1px solid var(--black);
@@ -135,7 +135,7 @@ html, body {
 .header-dropdown-item {
   font-family: var(--font);
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--black);
@@ -195,7 +195,7 @@ html, body {
   right: 20px;
   background: none;
   border: none;
-  font-size: 23px;
+  font-size: 18px;
   cursor: pointer;
   color: #000;
   font-family: var(--font);
@@ -208,7 +208,7 @@ html, body {
 .popup h2 {
   font-family: var(--font);
   font-weight: 300;
-  font-size: 14px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 32px;
@@ -218,7 +218,7 @@ html, body {
   display: block;
   font-family: var(--font);
   font-weight: 300;
-  font-size: 14px;
+  font-size: 11px;
   letter-spacing: 0.04em;
   margin-bottom: 4px;
   margin-top: 18px;
@@ -237,7 +237,7 @@ html, body {
   /* FIX: 16px stops iOS Safari's auto-zoom-on-focus. Visual size is
      brought back down with the transform below so it still reads as
      the same small, editorial 11px on screen. */
-  font-size: 20px;
+  font-size: 16px;
   transform: scale(0.6875);
   transform-origin: left center;
   width: 145.45%;
@@ -259,7 +259,7 @@ html, body {
 }
 
 .field-error {
-  font-size: 12px;
+  font-size: 10px;
   color: #c00;
   margin-top: 3px;
   letter-spacing: 0.03em;
@@ -273,7 +273,7 @@ html, body {
   border: none;
   font-family: var(--font);
   font-weight: 300;
-  font-size: 14px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 14px 0;
@@ -293,7 +293,7 @@ html, body {
 
 .success-msg {
   text-align: center;
-  font-size: 14px;
+  font-size: 11px;
   letter-spacing: 0.04em;
   padding: 24px 0;
   color: #000;
@@ -353,7 +353,7 @@ html, body {
 
 .mobile-menu-item {
   font-family: var(--font);
-  font-size: 15px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--black);
