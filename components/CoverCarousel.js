@@ -57,7 +57,7 @@ const BASE_SLIDES = [
     description: "Browse here.",
   },
   {
-    src: "/images/campus-interior.png",
+    src: "/images/campus-interior.jpg",
     alt: "Local donation and e-waste resources",
     href: "/resources", // adjust to your actual resources page route if different
     title: "DONATE LOCAL. RECYCLE SMART.",
