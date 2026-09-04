@@ -8,46 +8,60 @@ const lexendDeca = Lexend_Deca({ subsets: ["latin"], weight: ["400", "500"] });
 
 const BASE_SLIDES = [
   {
-    src: "/public/images/ucla.jpg",
-    alt: "College consumption has changed",
+    src: "/images/ucla-balustrade.jpg",
+    alt: "Campus consumption has changed",
     href: "/shop",
-    title: "college consumption has changed, and it's major",
+    title: "campus consumption has changed",
     description: "",
   },
   {
-    src: "/public/images/columbia.jpg",
+    src: "/images/columbia-library.jpg",
     alt: "Rent your textbooks",
     href: "/shop?category=books",
     title: "STILL NEED THAT PRE-1700 LIT BOOK?",
     description: "Rent it. Browse the books section.",
   },
   {
-    src: "/public/images/uscimage3.jpg",
+    src: "/images/usc-fighton.jpg",
     alt: "Game day merch",
     href: "/shop?category=merch",
     title: "READY FOR GAME DAY?",
     description: "Shop here.",
   },
   {
-    src: "/public/images/yaleimage4.jpg",
+    src: "/images/yale-plate.png",
     alt: "Move-in essentials",
     href: "/shop?category=dorm-essentials",
     title: "MOVE-IN ESSENTIALS",
     description: "",
   },
   {
-    src: "/public/images/uscimage2.jpg",
-    alt: "Tutoring services",
-    href: "/shop?category=services", // adjust if your services route differs
-    title: "TUTORS AVAILABLE BEFORE THE GAME",
+    src: "/images/resale-shoe.jpg",
+    alt: "Shop secondhand",
+    href: "/shop?category=clothing", // adjust if your resale/clothing route differs
+    title: "SHOP SECONDHAND. KEEP IT ON CAMPUS.",
     description: "",
   },
   {
-    src: "/public/images/lmu.jpg",
+    src: "/images/ucla-colonnade.jpg",
+    alt: "One student's done is another's dorm essential",
+    href: "/shop?category=dorm-essentials",
+    title: "ONE STUDENT'S DONE IS ANOTHER'S DORM ESSENTIAL",
+    description: "",
+  },
+  {
+    src: "/images/lmu-chapel.jpg",
     alt: "Browse majors",
     href: "/shop", // placeholder — swap once you have a majors/programs page
     title: "MAJOR CURIOUS?",
     description: "Browse here.",
+  },
+  {
+    src: "/images/campus-interior.png",
+    alt: "Local donation and e-waste resources",
+    href: "/resources", // adjust to your actual resources page route if different
+    title: "DONATE LOCAL. RECYCLE SMART.",
+    description: "Find e-waste and donation resources near campus.",
   },
 ];
 
@@ -156,7 +170,7 @@ export default function CoverCarousel() {
             <h3
               className={lexendDeca.className}
               style={{
-                fontSize: "24px",
+                fontSize: "19px",
                 fontWeight: 400,
                 letterSpacing: "0.02em",
                 textTransform: "uppercase",
@@ -171,7 +185,7 @@ export default function CoverCarousel() {
               <p
                 className={lexendDeca.className}
                 style={{
-                  fontSize: "20px",
+                  fontSize: "16px",
                   lineHeight: 1.4,
                   margin: 0,
                 }}
